@@ -20,6 +20,9 @@ class Known_Word(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'name': self.name,
+            'userId': self.user_id,
+            'languageId': self.language_id,
+            'word': self.word
+
 
         }

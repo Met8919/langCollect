@@ -14,7 +14,7 @@ class User_Language(db.Model):
 
 
     user = db.relationship('User',back_populates='my_languages')
-    language = db.relationship('Language', back_populates='user')
+    language = db.relationship('Language', back_populates='users')
 
     def to_dict(self):
         return {

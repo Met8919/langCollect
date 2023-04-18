@@ -13,13 +13,13 @@ class Flash_Card(db.Model):
     front = db.Column(db.String, nullable=False)
     back = db.Column(db.String, nullable=False)
 
-    deck = db.relationship('Flash_Card', back_populates='flash_cards')
+    deck = db.relationship('Deck', back_populates='flash_cards')
 
 
 
     def to_dict(self):
         return {
-            "id": self.id
+            "id": self.id,
             'deckId': self.deck_id,
             'front': self.front,
             'back': self.back,

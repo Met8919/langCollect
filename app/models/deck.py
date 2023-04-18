@@ -1,8 +1,8 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
-class User_Language(db.Model):
+class Deck(db.Model):
 
-    __tablename__ = 'user_languages'
+    __tablename__ = 'decks'
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
@@ -11,9 +11,10 @@ class User_Language(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     title = db.Column(db.String, nullable= False)
+    language_id = db.Column(db.String,db.ForeignKey(add_prefix_for_prod('languages.id')), nullable=False)
 
     user = db.relationship('User', back_populates='decks')
-    flash_cards = db.relationship('Flash_Card', back_populates='cards')
+    flash_cards = db.relationship('Flash_Card', back_populates='deck')
     language = db.relationship('Language', back_populates='decks')
 
 
@@ -21,5 +22,5 @@ class User_Language(db.Model):
         return {
             'id': self.id,
             'userId': self.user_id,
-            'languageId': self.title
+            'title': self.title
         }
