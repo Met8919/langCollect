@@ -14,6 +14,11 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
+    known_words = db.relationship('Known_Word',back_populates='user')
+    my_languages = db.relationship('User_Language')
+
+    decks = db.relationship('Deck', back_populates='user')
+
     @property
     def password(self):
         return self.hashed_password
