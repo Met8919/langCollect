@@ -13,7 +13,7 @@ class Language(db.Model):
 
     words = db.relationship('Know_Word', back_populates='language')
     users = db.relationship('User_language', back_populates='language')
-    deck = db.relationship('Deck', back_populates='language')
+    decks = db.relationship('Deck', back_populates='language')
 
     def to_dict(self):
         return {

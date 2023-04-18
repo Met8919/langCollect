@@ -15,7 +15,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     known_words = db.relationship('Known_Word',back_populates='user')
-    my_languages = db.relationship('User_Language')
+    my_languages = db.relationship('User_Language', back_populates='user')
 
     decks = db.relationship('Deck', back_populates='user')
 
