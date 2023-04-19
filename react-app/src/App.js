@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 import Decks from "./components/Decks/Decks";
 import Nav from "./components/Nav";
+import DeckForm from "./components/DeckForm/DeckForm";
 
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
 
   return (
     <>
-      {/* <Navigation isLoaded={isLoaded} /> */}
+      <Navigation isLoaded={isLoaded} />
       <Nav />
       {isLoaded && (
         <Switch>
@@ -34,8 +35,12 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path='/decks'>
+          <Route exact path='/decks'>
             <Decks />
+
+          </Route>
+          <Route exact path='/decks/new'>
+            <DeckForm />
 
           </Route>
         </Switch>

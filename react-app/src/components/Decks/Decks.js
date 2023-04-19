@@ -41,7 +41,7 @@ export default function Decks() {
 
         </div>
 
-        <NavLink id='create-a-deck' to='/'>CREATE A DECK</NavLink>
+        <NavLink id='create-a-deck' to='/decks/new'>CREATE A DECK</NavLink>
 
         </div>
     )

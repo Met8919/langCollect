@@ -3,7 +3,7 @@ import './Decks.css'
 
 export default function Deck({deck}) {
 
-
+    console.log(deck,'==================')
 
     return (
         <div className='deck-tile'>
