@@ -9,6 +9,7 @@ def seed_decks():
         language_id = 1
 
     )
+
     deck2 = Deck(
         user_id = 1,
         title = 'Test Deck2',
@@ -21,11 +22,18 @@ def seed_decks():
         language_id = 3
 
     )
+    deck4 = Deck(
+        user_id = 1,
+        title = 'Test Deck4',
+        language_id = 1
+
+    )
 
 
     db.session.add(deck1)
     db.session.add(deck2)
     db.session.add(deck3)
+    db.session.add(deck4)
     db.session.commit()
 
 

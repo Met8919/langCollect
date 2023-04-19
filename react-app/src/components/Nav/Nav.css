@@ -3,6 +3,7 @@
 .navbar-container {
     display: flex;
     justify-content: space-around;
+    align-content: center;
     width: 50%;
     margin: auto;
     background-color: rgb(0, 0, 0);
@@ -12,10 +13,12 @@
 
 
 }
-.navbar-container p {
+.nav-option {
     font-family: 'ArcadeClassic', sans-serif;
     color: rgb(255, 255, 255);
 
     font-size: 28px;
     letter-spacing: 0.1em;
+    margin: 10px 0;
+    text-decoration: none;
   }

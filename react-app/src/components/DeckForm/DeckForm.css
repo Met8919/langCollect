@@ -1,0 +1,76 @@
+
+
+.form-container {
+    margin-top: 12%;
+    margin-bottom: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: 'ArcadeClassic', sans-serif;
+    letter-spacing: 0.1em;
+    font-size: 30px;
+
+    width: 95%;
+
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+
+
+
+.form-label {
+    margin: 0 2%;
+    color: rgb(255, 255, 255);
+    padding: 10px;
+
+}
+.form-input {
+    width: 16%;
+    height: 40px;
+    border-bottom: 4px solid white;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    margin-right: 5%;
+    background-color: black;
+    color: white;
+    font-size: 25px;
+
+
+}
+
+.form-input:focus {
+    outline: none;
+}
+
+
+.card {
+    color: white;
+
+    align-self: flex-start;
+    margin-left: 40.5%;
+
+    font-size: 30px;
+    margin-bottom: 1.1%;
+    text-decoration: underline;
+}
+
+.form-submit {
+    color: white;
+    font-family: 'ArcadeClassic', sans-serif;
+    letter-spacing: 0.1em;
+    font-size: 30px;
+    border: 4px solid white;
+    margin-top: 5%;
+    width: 150px;
+    text-align: center;
+
+
+}

@@ -6,8 +6,10 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Home from "./components/Home";
-import Deck from "./components/Deck/Deck";
-import Nav from './components/Nav'
+import Decks from "./components/Decks/Decks";
+import Nav from "./components/Nav";
+import DeckForm from "./components/DeckForm/DeckForm";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -18,7 +20,7 @@ function App() {
 
   return (
     <>
-      {/* <Navigation isLoaded={isLoaded} /> */}
+      <Navigation isLoaded={isLoaded} />
       <Nav />
       {isLoaded && (
         <Switch>
@@ -33,8 +35,12 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path='/decks'>
-            <Deck />
+          <Route exact path='/decks'>
+            <Decks />
+
+          </Route>
+          <Route exact path='/decks/new'>
+            <DeckForm />
 
           </Route>
         </Switch>
