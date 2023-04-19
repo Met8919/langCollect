@@ -21,11 +21,25 @@ def seed_flash_cards():
         back = 'test back'
 
     )
+    card4 = Flash_Card(
+        deck_id = 1,
+        front = 'Test front2',
+        back = 'test back2'
+
+    )
+    card5 = Flash_Card(
+        deck_id = 4,
+        front = 'Test front4',
+        back = 'test back4'
+
+    )
 
 
     db.session.add(card1)
     db.session.add(card2)
     db.session.add(card3)
+    db.session.add(card4)
+    db.session.add(card5)
     db.session.commit()
 
 
