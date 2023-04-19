@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 import Deck from "./components/Deck/Deck";
+import Nav from './components/Nav'
 
 function App() {
   const dispatch = useDispatch();
@@ -17,7 +18,8 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
+      {/* <Navigation isLoaded={isLoaded} /> */}
+      <Nav />
       {isLoaded && (
         <Switch>
           <Route exact path='/'>

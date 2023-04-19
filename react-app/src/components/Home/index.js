@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { getLanguages, getUserLanguages } from "../../store/language";
 
-
+import './Home.css'
 
 
 export default function Home() {
@@ -13,6 +13,8 @@ export default function Home() {
     const dispatch = useDispatch()
     const languages = useSelector(state => state.languages.languages)
     const userLanguages = useSelector(state => state.languages.userLanguages)
+
+    const image = require('./world.svg.png');
 
 
 
@@ -35,18 +37,14 @@ export default function Home() {
 
 
     return (
-        <>
+        <div className="dash-container">
 
-        {Object.values(languages).map(language => (
-            <p>{language.name}</p>
-        ))}
+        <h2 id="title-languages">ADD  OR  REMOVE  LANGUAGES</h2>
+        <img src={image.default} alt="test"/>
 
+        <p id="save-languages">SAVE CHANGES</p>
 
-        {Object.values(userLanguages).map(language => (
-            <p>{language.name}</p>
-        ))}
-
-        </>
+        </div>
 
 
 
