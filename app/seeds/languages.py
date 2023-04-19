@@ -4,7 +4,7 @@ from sqlalchemy.sql import text
 
 def seed_Languages():
     russian = Language(
-        name = 'Rusian'
+        name = 'Russian'
     )
     portuguese = Language(
         name = 'Portuguese'
