@@ -22,9 +22,9 @@ def seed_Languages():
 
 def undo_languages():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.likes RESTART IDENTITY CASCADE")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.languages RESTART IDENTITY CASCADE")
     else:
-        db.session.execute(text("DELETE FROM Language"))
+        db.session.execute(text("DELETE FROM languages"))
 
 
     db.session.commit()

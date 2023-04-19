@@ -1,9 +1,11 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session'
+import languageReducer from './language';
 
 const rootReducer = combineReducers({
   session,
+  languages: languageReducer
 });
 
 

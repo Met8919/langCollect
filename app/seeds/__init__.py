@@ -25,12 +25,12 @@ def seed():
 
     seed_users()
     seed_Languages()
-    undo_users()
+    seed_user_languages()
 
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
-    undo_user_languages()
-    undo_languages()
     undo_users()
+    undo_languages()
+    undo_user_languages()
     # Add other undo functions here
