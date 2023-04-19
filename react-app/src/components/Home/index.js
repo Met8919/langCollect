@@ -36,10 +36,10 @@ export default function Home() {
 
     return (
         <>
-        <h1>test</h1>
-        {/* {Object.values(languages).map(language => (
+
+        {Object.values(languages).map(language => (
             <p>{language.name}</p>
-        ))} */}
+        ))}
 
 
         {Object.values(userLanguages).map(language => (
