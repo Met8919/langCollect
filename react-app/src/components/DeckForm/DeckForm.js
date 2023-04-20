@@ -27,7 +27,9 @@ export default function DeckForm() {
         dispatch(createDeck({title: title, langId: 1})).then((deck) => {
 
             const  newCards = {cards: cards, id: deck.id}
-            dispatch(createFlashCards(newCards))
+            dispatch(createFlashCards(newCards)).then(() => {
+                history.push('/decks')
+            })
 
         })
 

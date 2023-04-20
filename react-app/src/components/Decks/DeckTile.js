@@ -9,7 +9,7 @@ export default function Deck({deck}) {
         <div className='deck-tile'>
 
             <p>{deck.title}</p>
-            <p>No. cards {Object.values(deck.flashCards).length}</p>
+            <p>{Object.values(deck.flashCards).length} {Object.values(deck.flashCards).length > 1 ? 'cards' : 'card'}</p>
         </div>
     )
 
