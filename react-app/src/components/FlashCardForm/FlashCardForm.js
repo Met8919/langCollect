@@ -1,11 +1,13 @@
 
 import { useState } from 'react'
 import './FlashCardForm.css'
+import { useModal } from "../../context/Modal";
 
 export default function FlashCardForm({cards,setCards}) {
 
     const [front,setFront] = useState()
     const [back,setBack] = useState()
+    const { closeModal } = useModal();
 
 
     const addCard = (e) => {
@@ -14,6 +16,7 @@ export default function FlashCardForm({cards,setCards}) {
         setCards([...cards,newCard])
         setFront('')
         setBack('')
+        closeModal()
 
 
     }
