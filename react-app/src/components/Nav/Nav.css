@@ -22,3 +22,22 @@
     margin: 10px 0;
     text-decoration: none;
   }
+
+  .user-languages-container {
+    display: flex;
+    justify-content: center;
+
+    width: 50%;
+    margin: auto;
+
+  }
+
+  .user-languages {
+    color: white;
+    font-family: 'ArcadeClassic', sans-serif;
+    color: rgb(255, 255, 255);
+
+    font-size: 18px;
+    letter-spacing: 0.1em;
+    margin: 10px;
+  }

@@ -33,10 +33,18 @@ export default function Decks() {
         <div className='decks-container'>
 
             {Object.values(decks).map(deck => (
+                <div className='card-container'>
                 <NavLink to='/'>
                     <Deck deck={deck} />
 
                 </NavLink>
+                <div className='deck-buttons-container'>
+                    <p className='deck-buttons'>EDIT</p>
+                    <p className='deck-buttons'>DELETE</p>
+
+                </div>
+
+                </div>
             ))}
 
         </div>
