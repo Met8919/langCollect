@@ -69,7 +69,7 @@ export default function DeckForm() {
 
 
 
-            <div onClick={(e) => handleSubmit(e)} className="form-submit">SUBMIT</div>
+            <div onClick={(e) => handleSubmit(e)} className="form-submit">SAVE</div>
 
 
         </div>
