@@ -10,6 +10,7 @@ import Decks from "./components/Decks/Decks";
 import Nav from "./components/Nav";
 import DeckForm from "./components/DeckForm/DeckForm";
 import UpdateDeckForm from "./components/UpdateDeckForm/UpdateDeckForm";
+import CardReview from "./components/CardReview/CardReview";
 
 
 function App() {
@@ -45,6 +46,9 @@ function App() {
           </Route>
           <Route exact path={`/decks/update/:deckId`}>
             <UpdateDeckForm />
+          </Route>
+          <Route excat path={`/decks/:deckId`}>
+            <CardReview />
           </Route>
         </Switch>
       )}

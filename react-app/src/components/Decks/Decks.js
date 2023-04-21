@@ -49,8 +49,9 @@ export default function Decks() {
 
             {Object.values(decks).map(deck => (
                 <div className='card-container'>
-                <NavLink to='/'>
+                <NavLink to={`/decks/${deck.id}`}>
                     <Deck deck={deck} />
+
 
                 </NavLink>
                 <div className='deck-buttons-container'>
