@@ -1,6 +1,6 @@
 
 
-.flash-card-front {
+.flash-card-style {
     color: white;
 }
 
@@ -16,6 +16,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 
 }
 
@@ -28,6 +29,15 @@
 }
 
 .change-cards {
-    margin: 0 4%;
+    margin: 0 2%;
+    font-size: 70px;
 
+}
+
+
+.flip {
+    font-size: 60px;
+    position: absolute;
+    top: 0%;
+    right: 2%;
 }

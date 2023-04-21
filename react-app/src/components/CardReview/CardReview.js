@@ -14,6 +14,7 @@ export default function CardReview() {
 
     const [cards,setCards] = useState([])
     const [cardNumber,setCardNumber] = useState(0)
+    const [frontDisplay,setFrontDisplay] = useState(true)
 
 
     useEffect(() => {
@@ -58,6 +59,8 @@ export default function CardReview() {
 
 
 
+
+
     if (!Object.values(cards).length) return null
     // const flashCards = decks[deckId].flashCards
 
@@ -67,13 +70,16 @@ export default function CardReview() {
             <div className="outter-review-container">
 
 
-                                <div onClick={() => previousCard()} className="change-cards"> back </div>
+                                <div onClick={() => previousCard()} className="change-cards"> ← </div>
                             <div className="review-container">
 
-                                <div className="flash-card-front">{cards[cardNumber].front}</div>
+                                <div className="flip" onClick={() => setFrontDisplay(!frontDisplay)}>⤺</div>
+                                { frontDisplay && <div className="flash-card-style" >{cards[cardNumber].front}</div>}
+                                { !frontDisplay && <div className=" flash-card-style">{cards[cardNumber].back}</div>}
+
 
                             </div>
-                                <div onClick={() => nextCard()} className="change-cards"> next </div>
+                                <div onClick={() => nextCard()} className="change-cards"> → </div>
 
 
             </div>
