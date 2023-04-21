@@ -9,6 +9,7 @@ import Home from "./components/Home";
 import Decks from "./components/Decks/Decks";
 import Nav from "./components/Nav";
 import DeckForm from "./components/DeckForm/DeckForm";
+import UpdateDeckForm from "./components/UpdateDeckForm/UpdateDeckForm";
 
 
 function App() {
@@ -41,7 +42,9 @@ function App() {
           </Route>
           <Route exact path='/decks/new'>
             <DeckForm />
-
+          </Route>
+          <Route exact path={`/decks/update/:deckId`}>
+            <UpdateDeckForm />
           </Route>
         </Switch>
       )}

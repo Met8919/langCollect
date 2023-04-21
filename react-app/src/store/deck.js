@@ -13,17 +13,33 @@ const setUserDecks = (decks) => {
 }
 
 
-export const createFlashCards = (cards) => async (dispatch) => {
 
-    const res = await fetch('/api/cards', {
-        method: 'POST',
+
+export const updateDeck = (deck) => async () => {
+
+    const res = await fetch(`/api/decks/${deck.id}`,{
+        method: 'PUT',
         headers: {
             "Content-Type" : "application/json"
         },
-        body: JSON.stringify(cards)
+        body: JSON.stringify(deck)
+
     })
 
+
+
 }
+
+
+export const deleteDeck = (deckId) => async (dispatch) => {
+
+    const res = await fetch(`/api/decks/${deckId}`,{
+        method: 'DELETE'
+    })
+
+   return res
+}
+
 
 
 export const createDeck = (deckForm) => async (dispatch) => {

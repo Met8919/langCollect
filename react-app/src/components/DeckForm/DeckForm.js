@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import './DeckForm.css'
 import OpenModalButton from "../OpenModalButton";
 import FlashCardForm from "../FlashCardForm/FlashCardForm";
-import { createDeck, createFlashCards } from "../../store/deck";
+import { createDeck } from "../../store/deck";
+import { createFlashCards } from "../../store/flashCards";
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -12,6 +13,7 @@ export default function DeckForm() {
     const [cards,setCards] = useState([])
     const [title,setTitle] = useState('')
     const [showMenu, setShowMenu] = useState(false);
+    const [errors,setErrors] = useState({})
 
     const dispatch = useDispatch()
 
@@ -22,6 +24,28 @@ export default function DeckForm() {
 
 
     const handleSubmit = (e) => {
+
+        const err = {}
+
+
+
+        if (title.length < 3) {
+            err.title = 'Title must be three or more characters'
+        }
+
+        if (!cards.length) {
+            err.cards = 'Deck must have at least one card'
+        }
+
+        console.log(errors)
+
+        setErrors(err)
+
+        if (Object.values(err).length) return
+
+
+
+
 
 
         dispatch(createDeck({title: title, langId: 1})).then((deck) => {
@@ -70,6 +94,10 @@ export default function DeckForm() {
 
 
             <div onClick={(e) => handleSubmit(e)} className="form-submit">SAVE</div>
+
+            {errors && <p className="errors">{errors.title}</p>}
+            {errors && <p className="errors">{errors.cards}</p>}
+
 
 
         </div>

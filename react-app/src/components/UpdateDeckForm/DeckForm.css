@@ -55,11 +55,12 @@
     color: white;
 
     align-self: flex-start;
-    margin-left: 40.5%;
+    margin-left: 2%;
 
     font-size: 30px;
     margin-bottom: 1.1%;
     text-decoration: underline;
+
 }
 
 .form-submit {
@@ -75,9 +76,26 @@
 
 }
 
-.errors {
-    color: red;
+
+.update-card-container {
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    margin-left: 35%;
+
+
+    width: 70%;
+}
+
+.update-card-buttons {
+    color: white;
+    margin-left: 1%;
+
+    align-self: center;
+    font-size: 25px;
+    margin-top: 2%;
     font-family: 'ArcadeClassic', sans-serif;
     letter-spacing: 0.1em;
-    font-size: 25px;
+    border: 4px solid white;
+    padding: 3px;
 }
