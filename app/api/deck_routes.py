@@ -4,6 +4,34 @@ from flask_login import current_user, login_required
 
 deck_routes = Blueprint('decks',__name__)
 
+
+
+
+
+
+
+@deck_routes.route('/<int:deckId>',methods=['PUT'])
+def updateDeck(deckId):
+
+
+    deck = request.get_json()
+
+
+    deck_to_update = Deck.query.get(deck['id'])
+
+    # add validations
+    deck_to_update.title = deck['title']
+    db.session.commit()
+
+
+
+
+    return {"message" : 'success'}
+
+
+
+
+
 @deck_routes.route('/<int:langId>',methods=['GET'])
 def getUserDecks(langId):
 
@@ -20,17 +48,17 @@ def getUserDecks(langId):
 
     for deck in decks:
 
-        if deck.title not in all_decks:
+        if deck.id not in all_decks:
             flash_cards = deck.flash_cards
-            all_decks[deck.title] = deck.to_dict()
+            all_decks[deck.id] = deck.to_dict()
             for card in flash_cards:
-                if 'flashCards' not in all_decks[deck.title]:
-                    all_decks[deck.title]['flashCards'] = {}
-                all_decks[deck.title]['flashCards'][card.id] = card.to_dict()
+                if 'flashCards' not in all_decks[deck.id]:
+                    all_decks[deck.id]['flashCards'] = {}
+                all_decks[deck.id]['flashCards'][card.id] = card.to_dict()
 
-    print(all_decks,'==========================================')
-    print('==========================================')
-    print('==========================================')
+    # print(all_decks,'==========================================')
+    # print('==========================================')
+    # print('==========================================')
 
     return all_decks
 
@@ -57,3 +85,16 @@ def createDeck(langId):
     db.session.commit()
 
     return new_deck.to_dict()
+
+
+@deck_routes.route('/<int:deckId>', methods=['DELETE'])
+def delete_deck(deckId):
+
+
+    deck_to_delete = Deck.query.get(deckId)
+
+
+    db.session.delete(deck_to_delete)
+    db.session.commit()
+
+    return ''

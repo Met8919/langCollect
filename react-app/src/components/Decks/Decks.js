@@ -1,9 +1,10 @@
 import './Decks.css'
 import { useDispatch,useSelector } from "react-redux";
-import { getUserDecks } from '../../store/deck';
+import { deleteDeck, getUserDecks } from '../../store/deck';
 import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import Deck from './DeckTile';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 
@@ -11,6 +12,7 @@ export default function Decks() {
 
     const dispatch = useDispatch()
     const decks = useSelector(state => state.decks.decks)
+    const history = useHistory()
 
 
 
@@ -20,6 +22,19 @@ export default function Decks() {
 
 
     },[dispatch])
+
+    const handleDeleteDeck = (deckId) => {
+
+
+        dispatch(deleteDeck(deckId)).then(
+            dispatch(getUserDecks(1))
+        )
+
+    }
+
+    const handleEditDeck = (deckId) => {
+        history.push(`/decks/update/${deckId}`)
+    }
 
 
 
@@ -39,8 +54,8 @@ export default function Decks() {
 
                 </NavLink>
                 <div className='deck-buttons-container'>
-                    <p className='deck-buttons'>EDIT</p>
-                    <p className='deck-buttons'>DELETE</p>
+                    <p onClick={() => handleEditDeck(deck.id)} className='deck-buttons'>EDIT</p>
+                    <p onClick={() => handleDeleteDeck(deck.id)} className='deck-buttons'>DELETE</p>
 
                 </div>
 
