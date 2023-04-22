@@ -5,7 +5,12 @@ import { getLanguages, getUserLanguages } from "../../store/language";
 import './Home.css'
 
 
+
 export default function Home() {
+
+
+
+
 
 
 
@@ -14,8 +19,14 @@ export default function Home() {
     const languages = useSelector(state => state.languages.languages)
     const userLanguages = useSelector(state => state.languages.userLanguages)
 
-    const image = require('./world.svg.png');
 
+    const image = require('./world.svg.png')
+
+    const handleCountryClick =() => {
+
+
+
+    }
 
 
 
@@ -42,7 +53,13 @@ export default function Home() {
         <h2 id="title-languages">ADD  OR  REMOVE  LANGUAGES</h2>
         <img src={image.default} alt="test"/>
 
+
+
+
+
         <p id="save-languages">SAVE CHANGES</p>
+        <div onClick={(e) => handleCountryClick(e)} id="Brazil" ></div>
+        <div id="Russia"></div>
 
         </div>
 
