@@ -11,15 +11,12 @@ def seed_user_languages():
         user_id = 1,
         language_id = 2
     )
-    chinese = User_Language(
-        user_id = 1,
-        language_id = 3
-    )
+
 
 
     db.session.add(russian)
     db.session.add(portuguese)
-    db.session.add(chinese)
+
     db.session.commit()
 
 

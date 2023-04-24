@@ -2,13 +2,13 @@ import './Nav.css'
 import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { getLanguages, getUserLanguages } from "../../store/language";
+import { getLanguages, getUserLanguages, setCurrentLanguage } from "../../store/language";
 
 export default function Nav() {
     const dispatch = useDispatch()
     const languages = useSelector(state => state.languages.languages)
     const userLanguages = useSelector(state => state.languages.userLanguages)
-
+    const currentLanguage = useSelector(state => state.languages.currentLanguage)
 
     useEffect(() => {
         dispatch(getLanguages())
@@ -17,9 +17,24 @@ export default function Nav() {
     },[dispatch])
 
 
+    const handleCurrentLanguage = (e) => {
+
+        const languageName = e.target.innerText
+        const lang = languages[languageName]
+        console.log(lang)
+
+        dispatch(setCurrentLanguage(lang))
 
 
-    if (!Object.values(languages).length || !Object.values(languages).length) return null
+
+
+
+    }
+
+
+
+
+    if (!Object.values(languages).length) return null
 
 
 
@@ -42,7 +57,7 @@ export default function Nav() {
         <div className='user-languages-container'>
 
             {Object.values(userLanguages).map(lang => (
-                <p className='user-languages'>{lang.name}</p>
+                <p onClick={(e) => handleCurrentLanguage(e)} className={`user-languages ${currentLanguage?.name === lang.name ? 'active-language' : ''}` } >{lang.name}</p>
             ))}
 
 
