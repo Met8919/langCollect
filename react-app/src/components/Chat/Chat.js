@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import './Chat.css'
 import { sendMessage } from "../../store/Chat";
+import AssistantMessage from "./AssistantMessage";
+import { getKnownWords } from "../../store/knownWords";
+
 
 
 export default function Chat() {
@@ -11,6 +14,17 @@ export default function Chat() {
     const [chatInput,setChatInput] = useState('')
     const [disabled,setDisabled] = useState(false)
     const dispatch = useDispatch()
+
+    const knownWords = useSelector(state => state.words.knownWords)
+    const currentLanguage = useSelector(state => state.languages.currentLanguage)
+
+
+
+    useEffect(() => {
+
+        dispatch(getKnownWords(currentLanguage.id))
+
+    },[dispatch])
 
 
 
@@ -43,9 +57,17 @@ export default function Chat() {
 
             <div className='chat-display'>
 
-            {Object.values(chatDisplay).slice(1).map(msg => (
-                <p className={msg.role}>{msg.content}</p>
-            ))}
+            {Object.values(chatDisplay).slice(1).map(msg => {
+
+
+                if (msg.role === 'assistant') {
+
+                    return <AssistantMessage content={msg.content} knownWords={knownWords} />
+                }   else {
+                    return <p className={msg.role}>{msg.content}</p>
+                }
+
+            })}
 
 
 
