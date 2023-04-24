@@ -56,9 +56,7 @@ def getUserDecks(langId):
                     all_decks[deck.id]['flashCards'] = {}
                 all_decks[deck.id]['flashCards'][card.id] = card.to_dict()
 
-    # print(all_decks,'==========================================')
-    # print('==========================================')
-    # print('==========================================')
+
 
     return all_decks
 
@@ -72,7 +70,7 @@ def createDeck(langId):
     title = data['title']
 
 
-    print('===================================================')
+
 
 
     new_deck = Deck(

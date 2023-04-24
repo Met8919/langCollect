@@ -12,22 +12,29 @@ export default function Decks() {
 
     const dispatch = useDispatch()
     const decks = useSelector(state => state.decks.decks)
+    const currentLanguage = useSelector(state => state.languages.currentLanguage)
     const history = useHistory()
 
 
 
     useEffect(() => {
 
-        dispatch(getUserDecks(1))
+        if (Object.values(currentLanguage)) {
 
 
-    },[dispatch])
+            dispatch(getUserDecks(currentLanguage.id))
+
+        }
+
+
+
+    },[currentLanguage])
 
     const handleDeleteDeck = (deckId) => {
 
 
         dispatch(deleteDeck(deckId)).then(
-            dispatch(getUserDecks(1))
+            dispatch(getUserDecks(currentLanguage.id))
         )
 
     }
