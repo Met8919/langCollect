@@ -9,12 +9,17 @@ export default function Nav() {
     const languages = useSelector(state => state.languages.languages)
     const userLanguages = useSelector(state => state.languages.userLanguages)
     const currentLanguage = useSelector(state => state.languages.currentLanguage)
+    const user = useSelector(state => state.session.user)
 
     useEffect(() => {
-        dispatch(getLanguages())
-        dispatch(getUserLanguages())
 
-    },[dispatch])
+        if (user !== null) {
+            dispatch(getLanguages())
+            dispatch(getUserLanguages(user.id))
+        }
+
+
+    },[user])
 
 
     const handleCurrentLanguage = (e) => {
@@ -24,6 +29,7 @@ export default function Nav() {
         console.log(lang)
 
         dispatch(setCurrentLanguage(lang))
+
 
 
 

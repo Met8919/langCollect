@@ -22,7 +22,8 @@ export default function UpdateDeckForm() {
     const [newCards,setNewCards] = useState([])
 
     const [cardsToDelete,setCardsToDelete] = useState([])
-    // const [cardsToEdit,setCardsTOEdit] = useState([])
+    const [errors,setErrors] = useState({})
+
 
     const decks = useSelector(state => state.decks.decks)
 
@@ -55,6 +56,28 @@ export default function UpdateDeckForm() {
 
 
     const handleSave = (e) => {
+        console.log('clickeddddd')
+
+
+
+
+        const err = {}
+
+        if (title.length < 3 || title.length > 50) {
+            err.title = 'Title must be betwen three and fifty characters'
+        }
+
+        if (cards.length + newCards.length < 1) {
+            err.cards = 'Deck must have at least one card'
+        }
+
+        setErrors(err)
+
+        if (Object.values(err).length) return
+
+
+
+
 
         editDeck.title = title
         console.log('click')
@@ -187,6 +210,9 @@ export default function UpdateDeckForm() {
 
 
             <div onClick={(e) => handleSave(e)} className="form-submit">SAVE</div>
+
+            {errors && <p className="errors">{errors.title}</p>}
+            {errors && <p className="errors">{errors.cards}</p>}
 
 
         </div>

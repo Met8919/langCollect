@@ -6,6 +6,22 @@ const REMOVE_USER_LANGUAGE = 'language/REMOVE_USER_LANGUAGE'
 
 const SET_CURRENT_LANGUAGE = 'language/SET_CURRENT_LANGUAGE'
 
+const CLEAR_CURRENT_LANGUAGE = 'language/CLEAR_CURRENT_LANGUAGE'
+
+
+
+
+export const clearCurrentLanguage = () => {
+
+
+    return {
+        type: CLEAR_CURRENT_LANGUAGE,
+    }
+
+
+}
+
+
 
 export const setCurrentLanguage = (lang) => {
 
@@ -51,9 +67,9 @@ export const removeUserLanguage = (lang) => {
 }
 
 
-export const getUserLanguages = () => async (dispatch) => {
+export const getUserLanguages = (userId) => async (dispatch) => {
 
-    const res = await fetch(`/api/languages/1`)
+    const res = await fetch(`/api/languages/${userId}`)
 
     if (res.ok) {
         const userLanguages = await res.json()
@@ -135,6 +151,10 @@ export default function languageReducer(state = initalState, action) {
 
         newState = {...state,currentLanguage: action.lang}
         return newState
+
+        case CLEAR_CURRENT_LANGUAGE:
+            newState = {...state, currentLanguage: {}}
+            return newState
 
         default:
             return state
