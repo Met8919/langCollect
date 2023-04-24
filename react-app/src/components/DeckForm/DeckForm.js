@@ -29,13 +29,14 @@ export default function DeckForm() {
 
 
 
-        if (title.length < 3) {
-            err.title = 'Title must be three or more characters'
+        if (title.length < 3 || title.length > 50) {
+            err.title = 'Title must be betwen three and fifty characters'
         }
 
         if (!cards.length) {
             err.cards = 'Deck must have at least one card'
         }
+
 
         console.log(errors)
 

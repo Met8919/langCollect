@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { addUserLanguage, createUserLanguage, deleteUserLanguage, getLanguages, getUserLanguages, removeUserLanguage } from "../../store/language";
+import { addUserLanguage, clearCurrentLanguage, createUserLanguage, deleteUserLanguage, getLanguages, getUserLanguages, removeUserLanguage } from "../../store/language";
 
 import './Home.css'
 
@@ -19,7 +19,7 @@ export default function Home() {
     const languages = useSelector(state => state.languages.languages)
     const userLanguages = useSelector(state => state.languages.userLanguages)
     const [startingLanguages,setStartingLanguages] = useState([])
-
+    const currentLanguage = useSelector(state => state.languages.currentLanguage)
 
     const image = require('./world.svg.png')
 
@@ -45,8 +45,7 @@ export default function Home() {
        const languagesToAdd = []
        const languagesToDelete = []
 
-       console.log(currentLanguages,'----')
-       console.log(startingLangs,'++++++++++++++')
+
 
        for (let lang of currentLanguages) {
 
@@ -61,6 +60,9 @@ export default function Home() {
             if (!userLanguages[lang.name]) {
                 languagesToDelete.push(lang)
             }
+
+
+
        }
 
 
@@ -78,6 +80,8 @@ export default function Home() {
             }
 
        }
+
+
 
     }
 
@@ -97,6 +101,10 @@ export default function Home() {
 
             e.target.classList.remove(`selected-${e.target.id}`)
             dispatch(removeUserLanguage(currentCountry))
+
+            if (currentCountry.name === currentLanguage.name) {
+                dispatch(clearCurrentLanguage())
+            }
         }
     }
 

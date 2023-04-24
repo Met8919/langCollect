@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import Deck from './DeckTile';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { getUserLanguages } from '../../store/language';
 
 
 
@@ -14,11 +15,15 @@ export default function Decks() {
     const decks = useSelector(state => state.decks.decks)
     const currentLanguage = useSelector(state => state.languages.currentLanguage)
     const history = useHistory()
+    const user = useSelector(state => state.session.user)
+
+
 
 
 
     useEffect(() => {
 
+        dispatch(getUserLanguages(user.id))
         if (Object.values(currentLanguage)) {
 
 
@@ -44,6 +49,7 @@ export default function Decks() {
     }
 
 
+    if (!Object.values(currentLanguage).length) return (<h1 className='please-select'>PLEASE SELECT A LANGUAGE</h1>)
 
     if (!Object.values(decks).length) return null
 
