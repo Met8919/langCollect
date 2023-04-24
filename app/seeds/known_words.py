@@ -6,13 +6,13 @@ def seed_known_words():
     word1 = Known_Word(
         user_id = 1,
         language_id = 2,
-        word = 'Oi'
+        word = 'oi'
 
     )
     word2 = Known_Word(
         user_id = 1,
         language_id = 2,
-        word = 'Eu'
+        word = 'eu'
 
     )
     word3 = Known_Word(

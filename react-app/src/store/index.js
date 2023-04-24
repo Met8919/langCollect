@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session'
 import languageReducer from './language';
 import deckReducer from './deck';
+import wordsReducer from './knownWords';
 
 const rootReducer = combineReducers({
   session,
   languages: languageReducer,
-  decks: deckReducer
+  decks: deckReducer,
+  words: wordsReducer
 });
 
 
