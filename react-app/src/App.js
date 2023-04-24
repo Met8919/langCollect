@@ -11,6 +11,7 @@ import Nav from "./components/Nav";
 import DeckForm from "./components/DeckForm/DeckForm";
 import UpdateDeckForm from "./components/UpdateDeckForm/UpdateDeckForm";
 import CardReview from "./components/CardReview/CardReview";
+import Chat from "./components/Chat/Chat";
 
 
 function App() {
@@ -29,6 +30,10 @@ function App() {
           <Route exact path='/'>
 
             <Home />
+
+          </Route>
+          <Route exact path='/chat'>
+            <Chat />
 
           </Route>
           <Route path="/login" >
