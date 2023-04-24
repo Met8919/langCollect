@@ -1,0 +1,33 @@
+
+
+.chat-container{
+   background-color: aqua;
+   width: 50%;
+   margin: auto;
+}
+
+
+
+.chat-display {
+
+    background-color: red;
+    margin: auto;
+    width: 70%;
+    min-height: 100px;
+
+
+}
+
+
+.chat-input-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+
+}
+
+.chat-input {
+    width: 50%;
+
+}

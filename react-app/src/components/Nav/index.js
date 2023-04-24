@@ -49,7 +49,7 @@ export default function Nav() {
         <div className="navbar-container">
 
             <NavLink className='nav-option' to='/'> Profile</NavLink>
-            <NavLink className='nav-option' to='/'> Chat</NavLink>
+            <NavLink className='nav-option' to='/chat'> Chat</NavLink>
             <NavLink className='nav-option' excat to='/decks'> Decks</NavLink>
             <p className='nav-option'>Current Language</p>
 
