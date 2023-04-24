@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { getLanguages, getUserLanguages, setCurrentLanguage } from "../../store/language";
+import { logout } from "../../store/session";
 
 export default function Nav() {
     const dispatch = useDispatch()
@@ -10,6 +11,12 @@ export default function Nav() {
     const userLanguages = useSelector(state => state.languages.userLanguages)
     const currentLanguage = useSelector(state => state.languages.currentLanguage)
     const user = useSelector(state => state.session.user)
+
+
+    const handleLogout = (e) => {
+    e.preventDefault();
+    dispatch(logout());
+  };
 
     useEffect(() => {
 
@@ -57,7 +64,7 @@ export default function Nav() {
             <NavLink className='nav-option' to='/'> Profile</NavLink>
             <NavLink className='nav-option' to='/chat'> Chat</NavLink>
             <NavLink className='nav-option' excat to='/decks'> Decks</NavLink>
-            <p className='nav-option'>Current Language</p>
+            <p className='nav-option' onClick={handleLogout}>LOG OUT</p>
 
         </div>
         <div className='user-languages-container'>
