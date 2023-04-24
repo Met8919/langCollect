@@ -20,6 +20,7 @@ export default function Home() {
     const userLanguages = useSelector(state => state.languages.userLanguages)
     const [startingLanguages,setStartingLanguages] = useState([])
     const currentLanguage = useSelector(state => state.languages.currentLanguage)
+    const user = useSelector(state => state.session.user)
 
     const image = require('./world.svg.png')
 
@@ -28,10 +29,18 @@ export default function Home() {
 
 
     useEffect(() => {
-        dispatch(getLanguages())
-        dispatch(getUserLanguages()).then(() => {
-            setStartingLanguages(userLanguages)
-        })
+
+        if (user !== null) {
+
+            console.log(user.id,'========aaaaaa=============')
+
+            dispatch(getLanguages())
+            dispatch(getUserLanguages(user.id)).then(() => {
+                setStartingLanguages(userLanguages)
+            })
+
+        }
+
 
     },[dispatch])
 

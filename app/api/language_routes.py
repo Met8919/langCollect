@@ -24,7 +24,7 @@ def get_user_languages(userId):
         .select_from(User)\
         .join(User_Language)\
         .join(Language)\
-        .filter(User.id == 1)\
+        .filter(User.id == userId)\
         .all()
 
 
