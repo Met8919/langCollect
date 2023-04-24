@@ -5,7 +5,7 @@ import OpenModalButton from "../OpenModalButton";
 import FlashCardForm from "../FlashCardForm/FlashCardForm";
 import { createDeck } from "../../store/deck";
 import { createFlashCards } from "../../store/flashCards";
-import { useDispatch } from 'react-redux';
+import { useDispatch , useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 export default function DeckForm() {
@@ -14,12 +14,15 @@ export default function DeckForm() {
     const [title,setTitle] = useState('')
     const [showMenu, setShowMenu] = useState(false);
     const [errors,setErrors] = useState({})
+    const currentLanguage = useSelector(state => state.languages.currentLanguage)
 
     const dispatch = useDispatch()
 
 
     const closeMenu = () => setShowMenu(false);
     const history = useHistory()
+
+
 
 
 
@@ -49,7 +52,7 @@ export default function DeckForm() {
 
 
 
-        dispatch(createDeck({title: title, langId: 1})).then((deck) => {
+        dispatch(createDeck({title: title, langId: currentLanguage.id})).then((deck) => {
 
             const  newCards = {cards: cards, id: deck.id}
             dispatch(createFlashCards(newCards)).then(() => {
