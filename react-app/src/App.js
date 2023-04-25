@@ -44,7 +44,7 @@ function App() {
 
   return (
     <>
-      {!sessionUser && <Navigation isLoaded={isLoaded} />}
+      {isLoaded && !sessionUser && <Navigation isLoaded={isLoaded} />}
       {isLoaded && sessionUser && (
         <>
       <Nav />
