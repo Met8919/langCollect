@@ -26,6 +26,7 @@ export default function Chat() {
 
         dispatch(getKnownWords(currentLanguage.id))
         dispatch(getUserLanguages(user.id))
+        alert('Unkown words will appear highlighted. Click on the highlighted word to view its meaning ')
 
     },[dispatch])
 
