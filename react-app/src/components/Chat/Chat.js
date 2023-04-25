@@ -19,7 +19,7 @@ export default function Chat() {
     const knownWords = useSelector(state => state.words.knownWords)
     const currentLanguage = useSelector(state => state.languages.currentLanguage)
     const user = useSelector(state => state.session.user)
-
+    const userLanguages = useSelector(state => state.languages.userLanguages)
 
     useEffect(() => {
 
@@ -61,6 +61,8 @@ export default function Chat() {
 
     }
 
+
+    if (!Object.values(userLanguages).length) return (<h1 className='please-select'>PLEASE ADD A LANGUAGE TO PROFILE</h1>)
     if (!Object.values(currentLanguage).length) return (<h1 className='please-select'>PLEASE SELECT A LANGUAGE</h1>)
 
     return (

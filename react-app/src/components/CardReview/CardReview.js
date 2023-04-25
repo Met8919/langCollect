@@ -19,7 +19,7 @@ export default function CardReview() {
 
     useEffect(() => {
 
-        if (user === null) {
+        if (user !== null) {
 
             dispatch(getUserDecks(user.id))
 

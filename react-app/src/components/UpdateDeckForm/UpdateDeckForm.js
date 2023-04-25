@@ -5,11 +5,12 @@ import './DeckForm.css'
 import OpenModalButton from "../OpenModalButton";
 import FlashCardForm from "../FlashCardForm/FlashCardForm";
 import UpdateFlashCardForm from "../UpdateFlashCardForm/UpdateFlashCardForm";
-import {  updateDeck } from "../../store/deck";
+import {  getUserDecks, updateDeck } from "../../store/deck";
 import { createFlashCards, deleteCards } from "../../store/flashCards";
 import { useHistory } from 'react-router-dom';
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { updateCards } from "../../store/flashCards";
+import { setCurrentLanguage } from "../../store/language";
 
 
 export default function UpdateDeckForm() {
@@ -23,25 +24,46 @@ export default function UpdateDeckForm() {
 
     const [cardsToDelete,setCardsToDelete] = useState([])
     const [errors,setErrors] = useState({})
+    const [editDeck,setEditDeck] = useState({})
 
 
     const decks = useSelector(state => state.decks.decks)
 
     //chnage to langId - need to edit route in app comp
-    const editDeck = decks[deckId]
+    const dispatch = useDispatch()
+
 
     useEffect(() => {
 
-        setCards(Object.values(editDeck.flashCards))
-        setTitle(editDeck.title)
-
-    },[deckId])
-
+        if (!Object.values(decks).length) {
+            dispatch(getUserDecks())
+        }
 
 
+    },[dispatch])
 
 
-    const dispatch = useDispatch()
+    useEffect(() => {
+
+        if (Object.values(decks).length) {
+
+            const editingDeck = decks[deckId]
+            setEditDeck(editingDeck)
+            console.log(editingDeck,'editDDDDDDDKLJHDKJDHKJHKDJHDK')
+            setCards(Object.values(editingDeck.flashCards))
+            setTitle(editingDeck.title)
+
+
+        }
+
+
+
+    },[decks])
+
+
+
+
+
 
 
     const closeMenu = () => setShowMenu(false);
@@ -77,18 +99,19 @@ export default function UpdateDeckForm() {
 
 
 
+        const editingDeck = {...editDeck}
+        editingDeck.title = title
 
 
-        editDeck.title = title
-        console.log('click')
 
-        dispatch(updateDeck(editDeck))
+
+        dispatch(updateDeck(editingDeck))
 
         dispatch(updateCards(cards))
 
         dispatch(deleteCards(cardsToDelete))
 
-        dispatch(createFlashCards({id: editDeck.id ,cards: newCards})).then(
+        dispatch(createFlashCards({id: editingDeck.id ,cards: newCards})).then(
             history.push('/decks')
         )
 

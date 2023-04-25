@@ -16,6 +16,7 @@ export default function Decks() {
     const currentLanguage = useSelector(state => state.languages.currentLanguage)
     const history = useHistory()
     const user = useSelector(state => state.session.user)
+    const userLanguages = useSelector(state => state.languages.userLanguages)
 
 
 
@@ -27,9 +28,11 @@ export default function Decks() {
         if (Object.values(currentLanguage)) {
 
 
-            dispatch(getUserDecks(currentLanguage.id))
+            dispatch(getUserDecks())
 
         }
+
+
 
 
 
@@ -38,9 +41,12 @@ export default function Decks() {
     const handleDeleteDeck = (deckId) => {
 
 
-        dispatch(deleteDeck(deckId)).then(
-            dispatch(getUserDecks(currentLanguage.id))
-        )
+        dispatch(deleteDeck(deckId)).then(() => {
+
+
+            dispatch(getUserDecks())
+
+        })
 
     }
 
@@ -48,19 +54,20 @@ export default function Decks() {
         history.push(`/decks/update/${deckId}`)
     }
 
-
+    if (!Object.values(userLanguages).length) return (<h1 className='please-select'>PLEASE ADD A LANGUAGE TO PROFILE</h1>)
     if (!Object.values(currentLanguage).length) return (<h1 className='please-select'>PLEASE SELECT A LANGUAGE</h1>)
 
-    if (!Object.values(decks).length) return null
+
 
 
 
     return (
         <div className='outter-container'>
-            <h1>SELECT A DECK</h1>
+            {Object.values(decks).length && <h1>SELECT A DECK</h1>}
+            {!Object.values(decks).length && <h1>CREATE YOUR FIRST DECK</h1>}
         <div className='decks-container'>
 
-            {Object.values(decks).map(deck => (
+            {Object.values(decks).length && Object.values(decks).filter(deck => deck.languageId === currentLanguage.id).map(deck => (
                 <div className='card-container'>
                 <NavLink to={`/decks/${deck.id}`}>
                     <Deck deck={deck} />

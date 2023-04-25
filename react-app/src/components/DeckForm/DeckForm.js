@@ -70,7 +70,7 @@ export default function DeckForm() {
 
 
 
-
+    if (!Object.values(currentLanguage).length) return (<h1 className='please-select'>PLEASE SELECT A LANGUAGE</h1>)
 
     return (
         <div className="main-container">

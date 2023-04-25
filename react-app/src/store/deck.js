@@ -67,9 +67,9 @@ export const createDeck = (deckForm) => async (dispatch) => {
 
 
 
-export const getUserDecks = (langId) => async (dispatch) => {
+export const getUserDecks = () => async (dispatch) => {
 
-    const res = await fetch(`/api/decks/${langId}`)
+    const res = await fetch(`/api/decks`)
 
     if (res.ok) {
         const decks = await res.json()
