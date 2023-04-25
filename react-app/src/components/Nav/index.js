@@ -18,15 +18,15 @@ export default function Nav() {
     dispatch(logout());
   };
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        if (user !== null) {
-            dispatch(getLanguages())
-            dispatch(getUserLanguages(user.id))
-        }
+    //     if (user !== null) {
+    //         dispatch(getLanguages())
+    //         dispatch(getUserLanguages(user.id))
+    //     }
 
 
-    },[user])
+    // },[user])
 
 
     const handleCurrentLanguage = (e) => {
