@@ -15,19 +15,25 @@ export default function CardReview() {
     const [cards,setCards] = useState([])
     const [cardNumber,setCardNumber] = useState(0)
     const [frontDisplay,setFrontDisplay] = useState(true)
-
+    const user = useSelector(state => state.session.user)
 
     useEffect(() => {
 
-        dispatch(getUserDecks(1))
+        if (user === null) {
+
+            dispatch(getUserDecks(user.id))
+
+        }
 
 
-    },[dispatch])
+
+    },[user])
 
 
     useEffect(() => {
 
         if (Object.values(decks).length) {
+
 
 
             setCards(Object.values(decks[deckId].flashCards))
