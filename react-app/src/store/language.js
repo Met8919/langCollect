@@ -8,7 +8,19 @@ const SET_CURRENT_LANGUAGE = 'language/SET_CURRENT_LANGUAGE'
 
 const CLEAR_CURRENT_LANGUAGE = 'language/CLEAR_CURRENT_LANGUAGE'
 
+const SET_STARTING_LANGUAGES = 'language/SET_STARTING_LANGUAGES'
 
+
+export const setStartingLanguages = (languages) => {
+
+    return {
+        type: SET_STARTING_LANGUAGES,
+        languages
+
+    }
+
+
+}
 
 
 export const clearCurrentLanguage = () => {
@@ -74,6 +86,8 @@ export const getUserLanguages = (userId) => async (dispatch) => {
     if (res.ok) {
         const userLanguages = await res.json()
         dispatch(setUserLanguages(userLanguages))
+        return userLanguages
+
     }
 
 }
@@ -122,7 +136,7 @@ export const getLanguages = () => async (dispatch) => {
 
 
 
-const initalState = {userLanguages: {}, languages: {}, currentLanguage: {}}
+const initalState = {userLanguages: {}, languages: {}, currentLanguage: {}, startingLanguages: {}}
 
 export default function languageReducer(state = initalState, action) {
 
@@ -155,6 +169,8 @@ export default function languageReducer(state = initalState, action) {
         case CLEAR_CURRENT_LANGUAGE:
             newState = {...state, currentLanguage: {}}
             return newState
+        case SET_STARTING_LANGUAGES:
+            return {...state, startingLanguages: action.languages}
 
         default:
             return state

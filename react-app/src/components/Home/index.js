@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { addUserLanguage, clearCurrentLanguage, createUserLanguage, deleteUserLanguage, getLanguages, getUserLanguages, removeUserLanguage } from "../../store/language";
+import { addUserLanguage, clearCurrentLanguage, createUserLanguage, deleteUserLanguage, getLanguages, getUserLanguages, removeUserLanguage, setStartingLanguages } from "../../store/language";
 
 import './Home.css'
 
@@ -18,45 +18,38 @@ export default function Home() {
     const dispatch = useDispatch()
     const languages = useSelector(state => state.languages.languages)
     const userLanguages = useSelector(state => state.languages.userLanguages)
-    const [startingLanguages,setStartingLanguages] = useState([])
     const currentLanguage = useSelector(state => state.languages.currentLanguage)
     const user = useSelector(state => state.session.user)
 
+    // const [startingLanguages,setStartingLanguages] = useState({})
+    const startingLanguages = useSelector(state => state.languages.startingLanguages)
     const image = require('./world.svg.png')
 
 
 
 
 
-    useEffect(() => {
-
-        if (user !== null) {
-
-            console.log(user.id,'========aaaaaa=============')
-
-            dispatch(getLanguages())
-            dispatch(getUserLanguages(user.id)).then(() => {
-                setStartingLanguages(userLanguages)
-            })
-
-        }
 
 
-    },[dispatch])
 
 
 
     const handleSave = (e) => {
 
-       const currentLanguages = Object.values(userLanguages)
+       const userLangs = Object.values(userLanguages)
        const startingLangs = Object.values(startingLanguages)
 
        const languagesToAdd = []
        const languagesToDelete = []
 
+       console.log('clicked')
+
+       console.log(startingLanguages,'-----------base')
+       console.log(userLanguages,'----------change')
 
 
-       for (let lang of currentLanguages) {
+
+       for (let lang of userLangs) {
 
             if (!startingLanguages[lang.name]) {
                 languagesToAdd.push(lang)
@@ -75,6 +68,10 @@ export default function Home() {
        }
 
 
+       console.log(languagesToAdd,'to add ++++++')
+       console.log(languagesToDelete,'to delete ---------')
+
+
        if (languagesToAdd.length) {
 
             for (let lang of languagesToAdd) {
@@ -89,6 +86,10 @@ export default function Home() {
             }
 
        }
+
+       dispatch(setStartingLanguages(userLanguages))
+
+
 
 
 
