@@ -26,6 +26,11 @@ function SignupFormModal() {
 				err.push("Confirm Password field must be the same as the Password field")
 		}
 
+		if (username.length < 3) {
+			err.push("Username must be three or more characters")
+
+		}
+
 		setErrors(err)
 
 		if (err.length) return
