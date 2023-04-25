@@ -22,5 +22,6 @@ class Deck(db.Model):
         return {
             'id': self.id,
             'userId': self.user_id,
-            'title': self.title
+            'title': self.title,
+            'languageId': self.language_id
         }

@@ -32,13 +32,13 @@ def updateDeck(deckId):
 
 
 
-@deck_routes.route('/<int:langId>',methods=['GET'])
-def getUserDecks(langId):
+@deck_routes.route('',methods=['GET'])
+def getUserDecks():
 
 
 
     decks = db.session.query(Deck)\
-        .filter(Deck.language_id == langId, Deck.user_id == current_user.id )\
+        .filter(Deck.user_id == current_user.id )\
         .all()
 
 
