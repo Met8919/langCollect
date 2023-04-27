@@ -69,7 +69,7 @@ export default function Decks() {
 
             {Object.values(decks).length && Object.values(decks).filter(deck => deck.languageId === currentLanguage.id).map(deck => (
                 <div className='card-container'>
-                <NavLink to={`/decks/${deck.id}`}>
+                <NavLink hoverStyle={{ color: "blueviolet" }} className='navLink' to={`/decks/${deck.id}`}>
                     <Deck deck={deck} />
 
 

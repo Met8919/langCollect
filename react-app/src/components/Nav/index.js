@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { getLanguages, getUserLanguages, setCurrentLanguage } from "../../store/language";
 import { logout } from "../../store/session";
+import {  useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 
 export default function Nav() {
     const dispatch = useDispatch()
@@ -12,21 +13,35 @@ export default function Nav() {
     const currentLanguage = useSelector(state => state.languages.currentLanguage)
     const user = useSelector(state => state.session.user)
 
+    const [showLangs,setShowLangs] = useState(true)
+    const history = useLocation()
+    const path = history.pathname
+
+
+
+
+    useEffect(() => {
+
+        if (path.includes('/decks/')) {
+
+            setShowLangs(false)
+
+        } else {
+
+            setShowLangs(true)
+
+        }
+
+    },[path])
+
+
 
     const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
   };
 
-    // useEffect(() => {
 
-    //     if (user !== null) {
-    //         dispatch(getLanguages())
-    //         dispatch(getUserLanguages(user.id))
-    //     }
-
-
-    // },[user])
 
 
     const handleCurrentLanguage = (e) => {
@@ -69,7 +84,7 @@ export default function Nav() {
         </div>
         <div className='user-languages-container'>
 
-            {Object.values(userLanguages).map(lang => (
+            {showLangs && Object.values(userLanguages).map(lang => (
                 <p onClick={(e) => handleCurrentLanguage(e)} className={`user-languages ${currentLanguage?.name === lang.name ? 'active-language' : ''}` } >{lang.name}</p>
             ))}
 

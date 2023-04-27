@@ -16,6 +16,7 @@ h1 {
     display: flex;
     flex-direction: row;
     align-items: center;
+    flex-wrap: wrap;
 
     justify-content: center;
     width: 60%;
@@ -26,11 +27,15 @@ h1 {
 .deck-tile {
 
     border: 4px solid white;
-    margin: 10px 40px;
+    margin: 15px 40px;
     font-size: 30px;
     padding: 18px;
-    color: blueviolet;
-    /* width: 25%; */
+    color: rgb(255, 255, 255);
+    width: 200px;
+    height: 250px;
+    word-wrap: break-word;
+    text-align: center;
+
 
 
 
@@ -40,7 +45,15 @@ h1 {
 #create-a-deck {
     margin-top: 3%;
     font-size: 30px;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    border: 4px solid white;
 
+}
+
+#create-a-deck:hover {
+    color: blueviolet;
 }
 
 
@@ -48,6 +61,7 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-decoration: none;
 }
 
 .deck-buttons {
@@ -55,6 +69,12 @@ h1 {
 
     margin: 0 10px;
 }
+.deck-buttons:hover {
+    color: blueviolet;
+}
+
+
+
 
 .deck-buttons-container {
     display: flex;
@@ -70,4 +90,14 @@ h1 {
     width: fit-content;
 
 
+}
+
+
+.navLink {
+    text-decoration: none;
+}
+
+
+.navLink:hover {
+    color: blueviolet;
 }

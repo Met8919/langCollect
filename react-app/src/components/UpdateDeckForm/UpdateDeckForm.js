@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector  } from 'react-redux';
-import './DeckForm.css'
+import './updateDeckForm.css'
 import OpenModalButton from "../OpenModalButton";
 import FlashCardForm from "../FlashCardForm/FlashCardForm";
 import UpdateFlashCardForm from "../UpdateFlashCardForm/UpdateFlashCardForm";
@@ -199,6 +199,8 @@ export default function UpdateDeckForm() {
 
         {cards.map(card => (
             <div className="update-card-container">
+                <div className="edit-button-container">
+
                 <OpenModalButton
 
                     buttonText="EDIT"
@@ -206,8 +208,14 @@ export default function UpdateDeckForm() {
                     modalComponent={<UpdateFlashCardForm card={card} cards={cards} setCards={setCards} />}
 
                 />
+                </div>
+                <div className="flash-card-container">
+
+                    <p className="flash-card front">{card.front}</p>
+                    <p className="flash-card back">{card.back}</p>
+
+                </div>
                 <p onClick={(e) => handleCardDelete(e)} id={`${card.id}`}  className="update-card-buttons">DELETE</p>
-                <p className="card">{card.front}   :   {card.back}</p>
 
             </div>
 
@@ -215,15 +223,23 @@ export default function UpdateDeckForm() {
         ))}
         {newCards.map(card => (
             <div className="update-card-container">
-                <OpenModalButton
+                <div className="edit-button-container">
 
-                    buttonText="EDIT"
-                    onItemClick={closeMenu}
-                    modalComponent={<UpdateFlashCardForm card={card} newCards={newCards} setNewCards={setNewCards} />}
+                    <OpenModalButton
 
-                />
+                        buttonText="EDIT"
+                         onItemClick={closeMenu}
+                        modalComponent={<UpdateFlashCardForm card={card} cards={cards} setCards={setCards} />}
+
+                        />
+                </div>
+                <div className="flash-card-container">
+
+                    <p className="flash-card front">{card.front}</p>
+                    <p className="flash-card back">{card.back}</p>
+
+                </div>
                 <p onClick={(e) => handleCardDelete(e)} id={`${card.id}`} className="update-card-buttons">DELETE</p>
-                <p className="card">{card.front}   :   {card.back}</p>
 
             </div>
 

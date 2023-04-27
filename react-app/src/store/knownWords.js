@@ -31,6 +31,21 @@ export const getKnownWords = (langId) => async (dispatch) => {
 
 }
 
+export const addWord = (word) => async (dispatch) => {
+
+    const res = await fetch('/api/known-words',{
+        method: 'POST',
+        headers: {
+            "Content-Type" : "application/json"
+        },
+        body: JSON.stringify(word)
+    })
+
+
+
+
+}
+
 
 
 

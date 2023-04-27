@@ -8,9 +8,23 @@ export default function UpdateFlashCardForm({cards,setCards,card,newCards,setNew
     const [front,setFront] = useState(card.front)
     const [back,setBack] = useState(card.back)
     const { closeModal } = useModal();
-
+    const [errors,setErrors] = useState({})
 
     const editCard = () => {
+        const err = {}
+
+
+        if (front.length < 1 || front.length > 230) {
+            err.front = 'Front text must be between 1 and 230 characters'
+        }
+
+        if (back.length < 1 || back.length > 230) {
+            err.back = 'Back text must be between 1 and 230 characters'
+
+        }
+
+        setErrors(err)
+        if (Object.values(err).length) return
 
 
 
@@ -77,6 +91,8 @@ export default function UpdateFlashCardForm({cards,setCards,card,newCards,setNew
             <label>Back</label>
             <input value={back} onChange={(e) => setBack(e.target.value)}  className='card-input' />
             <div onClick={(e) => editCard(e)}>SUBMIT</div>
+            {errors.front && <p className='errors'>{errors.front}</p>}
+            {errors.back && <p className='errors'>{errors.back}</p>}
         </div>
     )
 }

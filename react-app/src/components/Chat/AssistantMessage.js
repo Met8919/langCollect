@@ -3,7 +3,9 @@
 
 
 
-export default function AssistantMessage({content,knownWords}) {
+export default function AssistantMessage({content,knownWords,popUp}) {
+
+
 
 
     const messageElements = content.split(' ').map(word => {
@@ -11,9 +13,9 @@ export default function AssistantMessage({content,knownWords}) {
         const wordToLower = word.toLowerCase()
 
         if (!knownWords[wordToLower]) {
-            return <span className="unknown-word" id={word} >{word} </span>
+            return <span onClick={(e) => popUp(e)} className="unknown-word" id={word} >{word} </span>
         }   else {
-            return <span>{word} </span>
+            return <span id={word}>{word} </span>
         }
 
 
