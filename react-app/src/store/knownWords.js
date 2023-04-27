@@ -1,7 +1,7 @@
 
 const SET_KNOWN_WORDS = 'knowWords/SET_KNOWN_WORDS'
 
-
+const ADD_WORD = 'knownwords/ADD_WORD'
 
 
 const setKnownWords = (words) => {
@@ -12,6 +12,14 @@ const setKnownWords = (words) => {
         words
     }
 
+}
+
+export const addWord = (word) => {
+
+    return {
+        type: ADD_WORD,
+        word
+    }
 
 }
 
@@ -19,7 +27,7 @@ const setKnownWords = (words) => {
 export const getKnownWords = (langId) => async (dispatch) => {
 
     const res = await fetch(`/api/known-words/${langId}`)
-
+    console.log('GETTING KNOWN WORDS')
 
     if (res.ok) {
 
@@ -31,7 +39,9 @@ export const getKnownWords = (langId) => async (dispatch) => {
 
 }
 
-export const addWord = (word) => async (dispatch) => {
+export const postWord = (word) => async (dispatch) => {
+
+
 
     const res = await fetch('/api/known-words',{
         method: 'POST',
@@ -59,6 +69,10 @@ export default function wordsReducer(state = initalState,action) {
     switch(action.type) {
         case SET_KNOWN_WORDS:
             return {...state, knownWords: action.words}
+        case ADD_WORD:
+            const newState = {...state, knownWords: {...state.knownWords} }
+            newState.knownWords[action.word.word] = action.word
+            return newState
         default:
             return state
     }

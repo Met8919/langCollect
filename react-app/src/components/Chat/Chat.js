@@ -30,6 +30,8 @@ export default function Chat() {
     const [showMenu, setShowMenu] = useState(false);
     const closeMenu = () => setShowMenu(false);
 
+    const [display , setDisplay] = useState(false)
+
 
 
 
@@ -41,12 +43,6 @@ export default function Chat() {
         setWord(word)
         setMenuOpen(true)
 
-        // if (word.classList.contains('unknown-word')) {
-        //     word.classList.remove('unknown-word')
-        // }   else {
-        //     word.classList.add('unknown-word')
-
-        // }
 
 
 
@@ -57,10 +53,12 @@ export default function Chat() {
 
 
         dispatch(getKnownWords(currentLanguage.id))
-        dispatch(getUserLanguages(user.id))
+        dispatch(getUserLanguages(user.id)).then(() => {
+                setDisplay(true)
+        })
         alert('Unkown words will appear highlighted. Click on the highlighted word to view its meaning ')
 
-    },[dispatch])
+    },[currentLanguage])
 
     useEffect(() => {
 
@@ -83,6 +81,8 @@ export default function Chat() {
         setChatDisplay(updatedChatDisplay)
         setChatInput('')
 
+
+
         setDisabled(true)
         dispatch(sendMessage(updatedChatDisplay)).then(msg => {
             setChatDisplay([...updatedChatDisplay,msg])
@@ -97,6 +97,9 @@ export default function Chat() {
 
     if (!Object.values(userLanguages).length) return (<h1 className='please-select'>PLEASE ADD A LANGUAGE TO PROFILE</h1>)
     if (!Object.values(currentLanguage).length) return (<h1 className='please-select'>PLEASE SELECT A LANGUAGE</h1>)
+
+    if (!display) return null
+
 
     return (
 
@@ -133,7 +136,7 @@ export default function Chat() {
 
             </div>}
 
-                {menuOpen && <PopUp word={word} setMenuOpen={setMenuOpen} /> }
+                {menuOpen && <PopUp word={word} setMenuOpen={setMenuOpen} currentLanguage={currentLanguage} /> }
 
         </div>
 

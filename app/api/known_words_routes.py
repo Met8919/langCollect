@@ -24,10 +24,19 @@ def get_known_words(langId):
     return word_dict
 
 
-@known_words_routes.route('/<int:langId>', methods=['POST'])
-def add_word(langId):
+@known_words_routes.route('', methods=['POST'])
+def add_word():
 
     data = request.get_json()
 
-    print(data)
+
+    new_word = Known_Word(
+        user_id = current_user.id,
+        language_id = data['languageId'],
+        word = data['word']
+    )
+    db.session.add(new_word)
+    db.session.commit()
+
+
     return ''
