@@ -19,6 +19,7 @@
 .login-container {
   margin: 15% 0;
   text-align: center;
+
 }
 
 .login-container:hover {
@@ -44,4 +45,8 @@
     text-align: center;
     padding: 5px;
     margin-top: 15%;
+}
+
+.demo-user:hover {
+  color: blueviolet;
 }

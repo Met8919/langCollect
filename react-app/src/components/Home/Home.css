@@ -141,3 +141,12 @@ img {
 .selected-Portuguese{
     fill: rgba(107, 209, 97, 0.5);
 }
+
+
+.China:hover {
+    fill: rgba(241, 69, 69, 0.5);
+}
+
+.selected-Chinese {
+    fill: rgba(241, 69, 69, 0.5);
+}

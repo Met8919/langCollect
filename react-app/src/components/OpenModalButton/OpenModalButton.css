@@ -11,3 +11,8 @@
 
     font-size: 30px;
 }
+
+
+#modal-button:hover {
+    color: blueviolet;
+}
