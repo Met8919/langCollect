@@ -14,6 +14,7 @@ from .api.deck_routes import deck_routes
 from .api.flash_cards import flash_card_routes
 from .api.chatgpt_routes import chatgpt_routes
 from .api.known_words_routes import known_words_routes
+from .api.translate_routes import translate_routes
 
 
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
@@ -39,6 +40,7 @@ app.register_blueprint(deck_routes, url_prefix='/api/decks')
 app.register_blueprint(flash_card_routes, url_prefix='/api/cards')
 app.register_blueprint(chatgpt_routes,url_prefix='/api/chat')
 app.register_blueprint(known_words_routes,url_prefix='/api/known-words')
+app.register_blueprint(translate_routes,url_prefix='/api/translate')
 db.init_app(app)
 Migrate(app, db)
 

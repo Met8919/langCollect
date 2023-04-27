@@ -127,6 +127,9 @@ img {
     fill: rgba(107, 209, 97, 0.5);
 }
 
+.selected-Portuguese{
+    fill: rgba(107, 209, 97, 0.5);
+}
 
 .Russian-Federation:hover path {
     fill: rgba(141, 129, 255, 0.5);
@@ -138,9 +141,6 @@ img {
 
 }
 
-.selected-Portuguese{
-    fill: rgba(107, 209, 97, 0.5);
-}
 
 
 .China:hover {
@@ -149,4 +149,14 @@ img {
 
 .selected-Chinese {
     fill: rgba(241, 69, 69, 0.5);
+}
+
+
+.United-States:hover {
+    fill: rgba(164, 231, 255, 0.5);
+}
+
+.selected-English {
+    fill: rgba(164, 231, 255, 0.5);
+
 }
