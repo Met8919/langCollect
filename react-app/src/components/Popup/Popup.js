@@ -20,6 +20,8 @@ export default function PopUp({word,setMenuOpen}) {
 
         dispatch(getTranslation(word.id)).then(trans => {
             setTranslated(trans)
+        }).catch(err => {
+            setTranslated(err)
         })
 
 

@@ -17,13 +17,16 @@ translate_routes = Blueprint('translate', __name__)
 @translate_routes.route('',methods=['POST'])
 def translate():
 
-    data = request.get_json()
+    try:
+        data = request.get_json()
 
+        translator = Translator()
+        translation = translator.translate(data, dest='English')
 
-    translator = Translator()
-    translation = translator.translate(data, dest='English')
+        print(translation,'--=-=-as=dao=sd-a=sdoahsdkhaksdhkjasdhkjashd')
 
-    print(translation,'--=-=-as=dao=sd-a=sdoahsdkhaksdhkjasdhkjashd')
+        return jsonify(translation.text)
 
+    except Exception as e:
 
-    return jsonify(translation.text)
+        return jsonify(e), 500
