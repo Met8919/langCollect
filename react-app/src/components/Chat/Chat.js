@@ -124,8 +124,8 @@ export default function Chat() {
                 </div>
                 <div className="chat-input-container">
 
-                <textarea className="chat-input" value={chatInput} onChange={(e) => setChatInput(e.target.value)} />
-                <button disabled={disabled} onClick={() => submitChat()}>SEND</button>
+                <textarea className="chat-input" onKeyDown={(e) => e.key === 'Enter' ? submitChat() : ''}  value={chatInput} onChange={(e) => setChatInput(e.target.value)} />
+                <button className="chat-send-button" disabled={disabled} onClick={() => submitChat()}>SEND</button>
                 </div>
 
 

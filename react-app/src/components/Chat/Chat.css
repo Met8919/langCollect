@@ -7,6 +7,7 @@
    font-size: 24px;
    color: rgb(228, 228, 228);
    position: relative;
+
 }
 
 
@@ -20,6 +21,8 @@
     border: 4px solid white;
     padding-left: 5%;
     overflow-y: scroll;
+    font-family: 'ArcadeClassic', sans-serif;
+    letter-spacing: 0.1em;
 
 
 
@@ -61,7 +64,15 @@
     font-size: 20px;
     color: white;
     resize: none;
+    font-family: 'ArcadeClassic', sans-serif;
+    letter-spacing: 0.1em;
+    border: 4px solid white;
 
+
+}
+
+.chat-input:focus {
+    outline: none;
 }
 
 
@@ -114,4 +125,17 @@
 
 .outter-chat-container {
     position: relative;
+}
+
+
+.chat-send-button {
+    margin: 2%;
+    background-color: black;
+    font-family: 'ArcadeClassic', sans-serif;
+    letter-spacing: 0.1em;
+    border: 4px solid white;
+    color: white;
+    font-size: 28px;
+    padding: 4px;
+    width: 10%;
 }

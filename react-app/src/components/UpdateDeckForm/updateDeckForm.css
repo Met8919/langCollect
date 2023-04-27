@@ -13,6 +13,7 @@
 
     width: 95%;
 
+
 }
 
 .main-container {
@@ -30,6 +31,7 @@
     color: rgb(255, 255, 255);
     padding: 10px;
 
+
 }
 .form-input {
     width: 16%;
@@ -42,6 +44,8 @@
     background-color: black;
     color: white;
     font-size: 25px;
+    font-family: 'ArcadeClassic', sans-serif;
+    letter-spacing: 0.1em;
 
 
 }
@@ -154,6 +158,8 @@
     margin-bottom: 1.1%;
 
     text-align: center;
+    font-family: 'ArcadeClassic', sans-serif;
+    letter-spacing: 0.1em;
 
 
 
