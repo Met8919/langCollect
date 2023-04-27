@@ -5,6 +5,8 @@ import { sendMessage } from "../../store/Chat";
 import AssistantMessage from "./AssistantMessage";
 import { getKnownWords } from "../../store/knownWords";
 import { getUserLanguages } from "../../store/language";
+import PopUp from "../Popup/Popup";
+import OpenModalButton from "../OpenModalButton";
 
 
 
@@ -20,6 +22,36 @@ export default function Chat() {
     const currentLanguage = useSelector(state => state.languages.currentLanguage)
     const user = useSelector(state => state.session.user)
     const userLanguages = useSelector(state => state.languages.userLanguages)
+
+    const [menuOpen,setMenuOpen] = useState(false)
+    const [word,setWord] = useState('This')
+
+
+    const [showMenu, setShowMenu] = useState(false);
+    const closeMenu = () => setShowMenu(false);
+
+
+
+
+
+    const popUp = (e) => {
+
+        const word = e.target
+
+        setWord(word)
+        setMenuOpen(true)
+
+        // if (word.classList.contains('unknown-word')) {
+        //     word.classList.remove('unknown-word')
+        // }   else {
+        //     word.classList.add('unknown-word')
+
+        // }
+
+
+
+
+    }
 
     useEffect(() => {
 
@@ -68,36 +100,46 @@ export default function Chat() {
 
     return (
 
+        <div className="outter-chat-container">
 
-        <div className='chat-container'>
-
-
-            <div className='chat-display'>
-
-            {Object.values(chatDisplay).slice(1).map(msg => {
+            <div className='chat-container'>
 
 
-                if (msg.role === 'assistant') {
+                <div className='chat-display'>
 
-                    return <AssistantMessage content={msg.content} knownWords={knownWords} />
-                }   else {
-                    return <p className={msg.role}>{msg.content}</p>
-                }
+                {Object.values(chatDisplay).slice(1).map(msg => {
 
-            })}
+
+                    if (msg.role === 'assistant') {
+
+                        return <AssistantMessage content={msg.content} knownWords={knownWords} popUp={popUp} />
+                    }   else {
+                        return <p className={msg.role}>{msg.content}</p>
+                    }
+
+                })}
+
+
+
+                </div>
+                <div className="chat-input-container">
+
+                <textarea className="chat-input" value={chatInput} onChange={(e) => setChatInput(e.target.value)} />
+                <button disabled={disabled} onClick={() => submitChat()}>SEND</button>
+                </div>
+
 
 
 
             </div>
-            <div className="chat-input-container">
 
-            <textarea className="chat-input" value={chatInput} onChange={(e) => setChatInput(e.target.value)} />
-            <button disabled={disabled} onClick={() => submitChat()}>SEND</button>
-            </div>
+                {menuOpen && <div className="word-popup">
 
+                        <PopUp word={word} setMenuOpen={setMenuOpen} />
+
+                    </div>}
 
         </div>
-
 
 
     )

@@ -50,16 +50,46 @@
     outline: none;
 }
 
+.flash-card-container {
+    border: 4px solid white;
+    width: 400px;
+    height: 165px;
+    margin: 1% 0;
 
-.card {
-    color: white;
+    overflow-y: scroll;
 
-    align-self: flex-start;
-    margin-left: 40.5%;
 
+}
+
+.flash-card-container::-webkit-scrollbar {
+    width: 24px;
+
+
+
+}
+
+.flash-card-container::-webkit-scrollbar-thumb {
+    background-color: #000000;
+
+    border: 3px solid #fff;
+
+}
+
+
+.flash-card {
+    color: rgb(255, 255, 255);
+
+
+
+    word-wrap: break-word;
+    margin-left: 2%;
     font-size: 30px;
     margin-bottom: 1.1%;
-    text-decoration: underline;
+
+    text-align: center;
+
+
+
 }
 
 .form-submit {

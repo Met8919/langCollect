@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom/cjs/react-router-dom.min"
+import {  useParams } from "react-router-dom/cjs/react-router-dom.min"
 import { useEffect, useState } from 'react';
 import { useDispatch,useSelector } from "react-redux";
 import { getUserDecks } from "../../store/deck";
@@ -16,6 +16,7 @@ export default function CardReview() {
     const [cardNumber,setCardNumber] = useState(0)
     const [frontDisplay,setFrontDisplay] = useState(true)
     const user = useSelector(state => state.session.user)
+
 
     useEffect(() => {
 
@@ -80,8 +81,8 @@ export default function CardReview() {
                             <div className="review-container">
 
                                 <div className="flip" onClick={() => setFrontDisplay(!frontDisplay)}>⤺</div>
-                                { frontDisplay && <div className="flash-card-style" >{cards[cardNumber].front}</div>}
-                                { !frontDisplay && <div className=" flash-card-style">{cards[cardNumber].back}</div>}
+                                { frontDisplay && <p className="flash-card-style" >{cards[cardNumber].front}</p>}
+                                { !frontDisplay && <p className=" flash-card-style">{cards[cardNumber].back}</p>}
 
 
                             </div>

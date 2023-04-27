@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { addUserLanguage, clearCurrentLanguage, createUserLanguage, deleteUserLanguage, getLanguages, getUserLanguages, removeUserLanguage, setStartingLanguages } from "../../store/language";
 
 import './Home.css'
+import WorldMap from "../WorldMap/WorldMap";
+
+
 
 
 
@@ -25,10 +28,51 @@ export default function Home() {
     const startingLanguages = useSelector(state => state.languages.startingLanguages)
     const image = require('./world.svg.png')
 
+    const saveChanges = useRef()
 
 
 
+    /// CREATE SAVE BUTTON ANIMATION!!!!!!!!!!
+    //!!!!!!!!!!!!!!!
+    //!!!!!!!!!!
 
+    useEffect(() => {
+
+        const userLangs = Object.values(userLanguages)
+       const startingLangs = Object.values(startingLanguages)
+
+       const languagesToAdd = []
+       const languagesToDelete = []
+
+       console.log('clicked')
+
+       for (let lang of userLangs) {
+
+            if (!startingLanguages[lang.name]) {
+                languagesToAdd.push(lang)
+            }
+       }
+
+       for (let lang of startingLangs) {
+
+            if (!userLanguages[lang.name]) {
+                languagesToDelete.push(lang)
+            }
+       }
+
+
+    //    if (languagesToAdd.length || languagesToDelete.length) {
+
+    //         saveChanges.current.classList.add('testing')
+
+    //    } else if (saveChanges.current.classList.contains('test')) {
+
+    //     saveChanges.current.classList.remove('testing')
+
+    //    }
+
+
+    },[userLanguages])
 
 
 
@@ -98,18 +142,19 @@ export default function Home() {
 
     const handleCountryClick = (e) => {
 
-        const countryDiv = e.target
+        const countryDiv = e.currentTarget
         const currentCountry = languages[countryDiv.id]
 
+        console.log(countryDiv,'-----',currentCountry)
 
-        if (!countryDiv.classList.contains(`selected-${e.target.id}`)) {
+        if (!countryDiv.classList.contains(`selected-${countryDiv.id}`)) {
 
-            e.target.classList.add(`selected-${e.target.id}`)
+            countryDiv.classList.add(`selected-${countryDiv.id}`)
             dispatch(addUserLanguage(currentCountry))
 
         }   else {
 
-            e.target.classList.remove(`selected-${e.target.id}`)
+            countryDiv.classList.remove(`selected-${countryDiv.id}`)
             dispatch(removeUserLanguage(currentCountry))
 
             if (currentCountry.name === currentLanguage.name) {
@@ -133,7 +178,8 @@ export default function Home() {
         <div className="dash-container">
 
         <h2 id="title-languages">ADD  OR  REMOVE  LANGUAGES</h2>
-        <img src={image.default} alt="test"/>
+        {/* <img src={worldSvg} alt="test"/> */}
+        <WorldMap handleCountryClick={handleCountryClick} startingLanguages={startingLanguages} />
 
 
 
@@ -147,7 +193,7 @@ export default function Home() {
 
             ))}
 
-            <p id="save-languages" onClick={(e) => handleSave(e)}>SAVE CHANGES</p>
+            <p id="save-languages" ref={saveChanges} onClick={(e) => handleSave(e)}>SAVE CHANGES</p>
         </div>
 
 

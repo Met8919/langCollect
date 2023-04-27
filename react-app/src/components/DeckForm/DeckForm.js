@@ -41,6 +41,8 @@ export default function DeckForm() {
         }
 
 
+
+
         console.log(errors)
 
         setErrors(err)
@@ -92,7 +94,12 @@ export default function DeckForm() {
         </div>
 
         {cards.map(card => (
-            <p className="card">{card.front}   :   {card.back}</p>
+            <div className="flash-card-container">
+
+                <p className="flash-card front">{card.front}</p>
+                <p className="flash-card back">{card.back}</p>
+
+            </div>
         ))}
 
 
