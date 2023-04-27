@@ -29,4 +29,4 @@ def translate():
 
     except Exception as e:
 
-        return jsonify(e), 500
+        return jsonify({'error': 'An error occurred while translating the text. Please try again later.'}), 500
