@@ -102,7 +102,7 @@ export default function Chat() {
 
         <div className="outter-chat-container">
 
-            <div className='chat-container'>
+            {!menuOpen && <div className='chat-container'>
 
 
                 <div className='chat-display'>
@@ -131,13 +131,9 @@ export default function Chat() {
 
 
 
-            </div>
+            </div>}
 
-                {menuOpen && <div className="word-popup">
-
-                        <PopUp word={word} setMenuOpen={setMenuOpen} />
-
-                    </div>}
+                {menuOpen && <PopUp word={word} setMenuOpen={setMenuOpen} /> }
 
         </div>
 

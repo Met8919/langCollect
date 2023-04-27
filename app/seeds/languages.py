@@ -12,11 +12,15 @@ def seed_Languages():
     chinese = Language(
         name = 'Chinese'
     )
+    english = Language(
+        name = 'English'
+    )
 
 
     db.session.add(russian)
     db.session.add(portuguese)
     db.session.add(chinese)
+    db.session.add(english)
     db.session.commit()
 
 
