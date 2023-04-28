@@ -29,7 +29,7 @@ export default function PopUp({word,setMenuOpen,currentLanguage}) {
 
     const handleAddWord = () => {
 
-        const newWord = {word: word.id, languageId: currentLanguage.id }
+        const newWord = {word: word.id.toLowerCase(), languageId: currentLanguage.id }
 
         dispatch(postWord(newWord)).then(() => {
             dispatch(addWord(newWord))
