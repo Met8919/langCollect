@@ -19,7 +19,7 @@ export default function PopUp({word,setMenuOpen,currentLanguage}) {
     useEffect(() => {
 
 
-        dispatch(getTranslation(word.id)).then(trans => {
+        dispatch(getTranslation({word: word.id, language: currentLanguage.name})).then(trans => {
             setTranslated(trans)
         }).catch(err => {
             setErrors(err)
