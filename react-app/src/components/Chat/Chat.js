@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import './Chat.css'
-import { sendMessage } from "../../store/Chat";
+import { addMessage, addMessages, changeChatLanguage, sendMessage } from "../../store/Chat";
 import AssistantMessage from "./AssistantMessage";
 import { getKnownWords } from "../../store/knownWords";
-import { getUserLanguages } from "../../store/language";
+import { getUserLanguages, setWord2, toggleDisplayChoices } from "../../store/language";
 import PopUp from "../Popup/Popup";
 import OpenModalButton from "../OpenModalButton";
 
@@ -13,8 +13,9 @@ import OpenModalButton from "../OpenModalButton";
 export default function Chat() {
 
 
-    const [chatDisplay,setChatDisplay] = useState([])
+
     const [chatInput,setChatInput] = useState('')
+
     const [disabled,setDisabled] = useState(false)
     const dispatch = useDispatch()
 
@@ -23,8 +24,12 @@ export default function Chat() {
     const user = useSelector(state => state.session.user)
     const userLanguages = useSelector(state => state.languages.userLanguages)
 
+    const chat = useSelector(state => state.chat.currentChat)
+
     const [menuOpen,setMenuOpen] = useState(false)
     const [word,setWord] = useState('This')
+
+    const wordsa = useSelector(state => state.languages.word)
 
 
     const [showMenu, setShowMenu] = useState(false);
@@ -32,7 +37,7 @@ export default function Chat() {
 
     const [display , setDisplay] = useState(false)
 
-
+    const [errors,setErrors] = useState({})
 
 
 
@@ -40,8 +45,11 @@ export default function Chat() {
 
         const word = e.target
 
+
+        dispatch(setWord2(word.id))
         setWord(word)
         setMenuOpen(true)
+        dispatch(toggleDisplayChoices())
 
 
 
@@ -52,20 +60,24 @@ export default function Chat() {
     useEffect(() => {
 
 
+        if (Object.values(currentLanguage).length) {
+
+
         dispatch(getKnownWords(currentLanguage.id))
         dispatch(getUserLanguages(user.id)).then(() => {
                 setDisplay(true)
         })
-        alert('Unkown words will appear highlighted. Click on the highlighted word to view its meaning ')
+        }
 
     },[currentLanguage])
 
     useEffect(() => {
 
         if (Object.values(currentLanguage).length) {
-            const system = [...chatDisplay]
-            system[0] = {role: 'system', content: `Only speak in ${currentLanguage.name}`}
-            setChatDisplay(system)
+            const messages = [...chat]
+            messages[0] = {role: 'system', content: `Only speak in ${currentLanguage.name}`}
+            dispatch(changeChatLanguage(messages[0]))
+
         }
 
 
@@ -74,26 +86,40 @@ export default function Chat() {
 
 
 
+
+
     const submitChat = async (e) => {
 
         let message = {role: 'user', content: chatInput}
-        const updatedChatDisplay = [...chatDisplay,message]
-        setChatDisplay(updatedChatDisplay)
-        setChatInput('')
+        const updatedChatDisplay = [...chat,message]
+
+
+          setChatInput('')
 
 
 
-        setDisabled(true)
-        dispatch(sendMessage(updatedChatDisplay)).then(msg => {
-            setChatDisplay([...updatedChatDisplay,msg])
-            setDisabled(false)
-        })
+            setDisabled(true)
+
+            dispatch(addMessages(updatedChatDisplay))
+
+            dispatch(sendMessage(updatedChatDisplay)).then(() => {
+                setDisabled(false)
+            }).catch((err) => {
+                setErrors(err)
+                setDisabled(false)
+            })
 
 
 
 
     }
 
+
+
+
+
+
+    if (errors.message) return <h1>{errors.message}</h1>
 
     if (!Object.values(userLanguages).length) return (<h1 className='please-select'>PLEASE ADD A LANGUAGE TO PROFILE</h1>)
     if (!Object.values(currentLanguage).length) return (<h1 className='please-select'>PLEASE SELECT A LANGUAGE</h1>)
@@ -110,7 +136,7 @@ export default function Chat() {
 
                 <div className='chat-display'>
 
-                {Object.values(chatDisplay).slice(1).map(msg => {
+                {chat.length && chat.slice(1).map(msg => {
 
 
                     if (msg.role === 'assistant') {
@@ -142,7 +168,4 @@ export default function Chat() {
 
 
     )
-
-
-
 }

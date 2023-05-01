@@ -25,7 +25,7 @@ def translate():
         translator = Translator()
         translation = translator.translate(word,src=language, dest='English')
 
-        print(translation,'--=-=-as=dao=sd-a=sdoahsdkhaksdhkjasdhkjashd')
+
 
         return jsonify(translation.text)
 

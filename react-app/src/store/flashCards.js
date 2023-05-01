@@ -3,6 +3,7 @@
 
 export const createFlashCards = (cards) => async (dispatch) => {
 
+    console.log(cards,'CARDS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
     const res = await fetch('/api/cards', {
         method: 'POST',
         headers: {
@@ -16,6 +17,7 @@ export const createFlashCards = (cards) => async (dispatch) => {
 
 
 export const updateCards = (cards) => async() => {
+
 
     const res = await fetch('/api/cards',{
         method: 'PUT',

@@ -11,6 +11,34 @@ const CLEAR_CURRENT_LANGUAGE = 'language/CLEAR_CURRENT_LANGUAGE'
 const SET_STARTING_LANGUAGES = 'language/SET_STARTING_LANGUAGES'
 
 
+const TOGGLE_DISPLAY_CHOICES = 'language/TOGGLE_DISPLAY_CHOICES'
+
+
+const SET_WORD = '/language/SET_WORD'
+
+
+export const setWord2 = (word) => {
+
+    return {
+        type: SET_WORD,
+        word
+    }
+
+}
+
+
+export const toggleDisplayChoices = () => {
+
+    return {
+        type: TOGGLE_DISPLAY_CHOICES
+
+    }
+
+}
+
+
+
+
 export const setStartingLanguages = (languages) => {
 
     return {
@@ -136,7 +164,7 @@ export const getLanguages = () => async (dispatch) => {
 
 
 
-const initalState = {userLanguages: {}, languages: {}, currentLanguage: {}, startingLanguages: {}}
+const initalState = {userLanguages: {}, languages: {}, currentLanguage: {}, startingLanguages: {}, word: {}, displayChoices: true}
 
 export default function languageReducer(state = initalState, action) {
 
@@ -172,6 +200,11 @@ export default function languageReducer(state = initalState, action) {
         case SET_STARTING_LANGUAGES:
             return {...state, startingLanguages: action.languages}
 
+        case SET_WORD:
+            return {...state,word: action.word}
+
+        case TOGGLE_DISPLAY_CHOICES:
+            return {...state, displayChoices: !state.displayChoices}
         default:
             return state
     }

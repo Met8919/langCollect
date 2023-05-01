@@ -13,6 +13,7 @@ import UpdateDeckForm from "./components/UpdateDeckForm/UpdateDeckForm";
 import CardReview from "./components/CardReview/CardReview";
 import Chat from "./components/Chat/Chat";
 import { getLanguages, getUserLanguages, setStartingLanguages } from "./store/language";
+import PopUp from "./components/Popup/Popup";
 
 
 function App() {
@@ -20,6 +21,11 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const sessionUser = useSelector(state => state.session.user);
   const userLanguages = useSelector(state => state.languages.userLanguages)
+
+  const word = useSelector(state => state.languages.word)
+
+
+
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
@@ -77,6 +83,7 @@ function App() {
           <Route excat path={`/decks/:deckId`}>
             <CardReview />
           </Route>
+
         </Switch>
         </>
       )}

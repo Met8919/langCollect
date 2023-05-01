@@ -23,13 +23,17 @@ def send_message():
 
     data = request.get_json()
 
-    print(data,'====================')
+    try:
 
-    response = openai.ChatCompletion.create(
-        model='gpt-3.5-turbo',
-        messages=data
+        response = openai.ChatCompletion.create(
+            model='gpt-3.5-turbo',
+            messages=data
 
-    )
+        )
 
 
-    return jsonify(response['choices'][0]['message'])
+        return jsonify(response['choices'][0]['message'])
+
+    except Exception as e:
+
+        return jsonify({'error': 'An error occurred. Please try again later.'}), 500
