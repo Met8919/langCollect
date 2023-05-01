@@ -24,7 +24,9 @@ export default function Home() {
     const currentLanguage = useSelector(state => state.languages.currentLanguage)
     const user = useSelector(state => state.session.user)
 
-    // const [startingLanguages,setStartingLanguages] = useState({})
+    const [message,setMessage] = useState('')
+
+
     const startingLanguages = useSelector(state => state.languages.startingLanguages)
     const image = require('./world.svg.png')
 
@@ -60,16 +62,6 @@ export default function Home() {
             }
        }
 
-
-    //    if (languagesToAdd.length || languagesToDelete.length) {
-
-    //         saveChanges.current.classList.add('testing')
-
-    //    } else if (saveChanges.current.classList.contains('test')) {
-
-    //     saveChanges.current.classList.remove('testing')
-
-    //    }
 
 
     },[userLanguages])
@@ -134,7 +126,12 @@ export default function Home() {
        dispatch(setStartingLanguages(userLanguages))
 
 
+       setMessage('Saved')
+       setTimeout(() => {
 
+        setMessage('')
+
+    },700)
 
 
     }
@@ -178,7 +175,7 @@ export default function Home() {
         <div className="dash-container">
 
         <h2 id="title-languages">ADD  OR  REMOVE  LANGUAGES</h2>
-        {/* <img src={worldSvg} alt="test"/> */}
+
         <WorldMap handleCountryClick={handleCountryClick} startingLanguages={startingLanguages} />
 
 
@@ -194,7 +191,11 @@ export default function Home() {
             ))}
 
             <p id="save-languages" ref={saveChanges} onClick={(e) => handleSave(e)}>SAVE CHANGES</p>
+
+            {message.length && <p className='changes-saved-message'>{message}</p>}
+
         </div>
+
 
 
 

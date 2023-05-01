@@ -19,11 +19,13 @@ def translate():
 
     try:
         data = request.get_json()
+        word = data['word']
+        language = data['language']
 
         translator = Translator()
-        translation = translator.translate(data, dest='English')
+        translation = translator.translate(word,src=language, dest='English')
 
-        print(translation,'--=-=-as=dao=sd-a=sdoahsdkhaksdhkjasdhkjashd')
+
 
         return jsonify(translation.text)
 

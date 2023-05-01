@@ -4,12 +4,14 @@ import session from './session'
 import languageReducer from './language';
 import deckReducer from './deck';
 import wordsReducer from './knownWords';
+import chatReducer from './Chat';
 
 const rootReducer = combineReducers({
   session,
   languages: languageReducer,
   decks: deckReducer,
-  words: wordsReducer
+  words: wordsReducer,
+  chat: chatReducer
 });
 
 

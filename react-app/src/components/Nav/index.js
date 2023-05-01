@@ -12,6 +12,7 @@ export default function Nav() {
     const userLanguages = useSelector(state => state.languages.userLanguages)
     const currentLanguage = useSelector(state => state.languages.currentLanguage)
     const user = useSelector(state => state.session.user)
+    const displayLangs = useSelector(state => state.languages.displayChoices)
 
     const [showLangs,setShowLangs] = useState(true)
     const history = useLocation()
@@ -22,7 +23,9 @@ export default function Nav() {
 
     useEffect(() => {
 
-        if (path.includes('/decks/')) {
+
+
+        if (path.includes('/decks/') || !displayLangs) {
 
             setShowLangs(false)
 
@@ -30,9 +33,11 @@ export default function Nav() {
 
             setShowLangs(true)
 
+            console.log(displayLangs,'pasdasdasd')
+
         }
 
-    },[path])
+    },[path,displayLangs])
 
 
 

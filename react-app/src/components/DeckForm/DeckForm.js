@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './DeckForm.css'
 import OpenModalButton from "../OpenModalButton";
 import FlashCardForm from "../FlashCardForm/FlashCardForm";
@@ -8,7 +8,7 @@ import { createFlashCards } from "../../store/flashCards";
 import { useDispatch , useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-export default function DeckForm() {
+export default function DeckForm({word = {},translated = {},setCreateDeck,setDecksDisplay,setCreateFlashActive}) {
 
     const [cards,setCards] = useState([])
     const [title,setTitle] = useState('')
@@ -21,6 +21,23 @@ export default function DeckForm() {
 
     const closeMenu = () => setShowMenu(false);
     const history = useHistory()
+
+
+    useEffect(() => {
+
+       if (Object.values(word).length) {
+
+
+        const front = word.id
+        const back = translated
+
+        const newCard = {front: front, back: back}
+        setCards([newCard])
+
+       }
+
+
+    },[])
 
 
 
@@ -58,7 +75,17 @@ export default function DeckForm() {
 
             const  newCards = {cards: cards, id: deck.id}
             dispatch(createFlashCards(newCards)).then(() => {
-                history.push('/decks')
+
+                if (!Object.values(word).length) {
+                    history.push('/decks')
+
+                } else {
+                    setCreateDeck(false)
+                    setDecksDisplay(false)
+                    setCreateFlashActive(false)
+                }
+
+
             })
 
         })
