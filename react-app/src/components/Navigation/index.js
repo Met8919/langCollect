@@ -23,8 +23,13 @@ function Navigation({ isLoaded }){
 		// }
 	  };
 
-	return (
+	  return (
+
+		<>
+		
+		<h1 className="main-title">LANG COLLECT</h1>
 		<div className="login-signup-container">
+
 
 			<div className="login-container">
 
@@ -32,6 +37,7 @@ function Navigation({ isLoaded }){
               buttonText="Log In"
               onItemClick={closeMenu}
               modalComponent={<LoginFormModal />}
+			  c
             />
 
 			</div>
@@ -42,6 +48,7 @@ function Navigation({ isLoaded }){
               buttonText="Sign Up"
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
+			  className='full-width-button'
             />
 
 			</div>
@@ -53,6 +60,8 @@ function Navigation({ isLoaded }){
 
 
 		</div>
+		
+		</>
 	);
 }
 

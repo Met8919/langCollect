@@ -39,6 +39,8 @@ export default function Chat() {
 
     const [errors,setErrors] = useState({})
 
+    const [displayMessage,setDisplayMessage] = useState(true)
+
 
 
     const popUp = (e) => {
@@ -130,6 +132,15 @@ export default function Chat() {
     return (
 
         <div className="outter-chat-container">
+
+            {displayMessage && 
+            <div className="info-message">
+                <div className="close-info" onClick={(e) => setDisplayMessage(false)}>X</div>
+                <p>Type your message in the box below 
+                    to begin chatting in the foreign language of your choice.</p>
+                    <p>Unknown words will appear highlighted. Click on the highlighted words to see the translation and or add them to a Deck as a flash card.</p>
+                    
+                </div>}
 
             {!menuOpen && <div className='chat-container'>
 

@@ -9,6 +9,10 @@
     font-family: 'ArcadeClassic', sans-serif;
     font-weight: 100;
     position: relative;
+    margin-bottom: 0;
+    width: 90%;
+    height: 90%;
+    margin: 0 auto;
 }
 
 
@@ -21,13 +25,14 @@ img {
 }
 
 #save-languages {
-    font-size: 28px;
+    font-size: 36px;
 
     color: rgb(255, 255, 255);
     letter-spacing: 0.1em;
     margin-top: 0;
     position: absolute;
-    top: 83%;
+    top: 88%;
+    cursor: pointer;
 
 }
 
@@ -46,8 +51,8 @@ img {
     font-weight: 100;
     font-size: 32px;
     letter-spacing: 0.1em;
-    color: rgb(206, 206, 206);
-    margin: 0;
+    color: rgb(219, 219, 219);
+    margin: 40px;
 }
 
 
@@ -62,10 +67,12 @@ img {
 
 .world-map {
 
-    transform: scale(0.7);
+    width: 100%;
     fill: rgb(122, 122, 122);
-
+    height: auto;
     margin: 0;
+
+    
 
 }
 
@@ -91,6 +98,23 @@ img {
 
 }
 
+
+.German:hover {
+    fill:rgba(191, 212, 1, 0.5);
+}
+
+.selected-German {
+    fill:rgba(191, 212, 1, 0.5);
+}
+
+
+.France:hover {
+    fill:rgba(255, 88, 59, 0.5);
+}
+
+.selected-French {
+    fill:rgba(255, 88, 59, 0.5);
+}
 
 
 .China:hover {
@@ -135,4 +159,11 @@ img {
     100% {
       transform: scale(1.5);
     }
+  }
+
+
+  .not-active {
+
+    fill: rgb(59, 59, 59);
+  
   }

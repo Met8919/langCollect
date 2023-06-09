@@ -174,7 +174,7 @@ export default function Home() {
     return (
         <div className="dash-container">
 
-        <h2 id="title-languages">ADD  OR  REMOVE  LANGUAGES</h2>
+        <h2 id="title-languages">CLICK BELOW TO ADD  OR  REMOVE  LANGUAGES</h2>
 
         <WorldMap handleCountryClick={handleCountryClick} startingLanguages={startingLanguages} />
 
@@ -192,7 +192,7 @@ export default function Home() {
 
             <p id="save-languages" ref={saveChanges} onClick={(e) => handleSave(e)}>SAVE CHANGES</p>
 
-            {message.length && <p className='changes-saved-message'>{message}</p>}
+            {message.length > 0 && <p className='changes-saved-message'>{message}</p>}
 
         </div>
 
