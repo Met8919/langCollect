@@ -16,7 +16,7 @@
 
 
     width: 400px;
-    height:270px;
+    height:290px;
     background-color: black;
     padding-bottom: 50px;
 
@@ -26,9 +26,18 @@
     color: white;
     background-color: black;
     border: 4px solid white;
-    margin-top: 15%;
+    margin-top: 50px;
     margin: auto;
     font-size: 28px;
     width: 150px;
     font-family: 'ArcadeClassic', sans-serif;
+    cursor: pointer;
+}
+
+#signup-button:hover {
+    color: blueviolet;
+}
+
+#confirm-pass {
+    margin-bottom: 10px;
 }
