@@ -49,7 +49,7 @@ export default function UpdateDeckForm() {
 
             const editingDeck = decks[deckId]
             setEditDeck(editingDeck)
-            console.log(editingDeck,'editDDDDDDDKLJHDKJDHKJHKDJHDK')
+            
             setCards(Object.values(editingDeck.flashCards))
             setTitle(editingDeck.title)
 

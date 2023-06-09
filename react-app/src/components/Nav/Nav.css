@@ -21,6 +21,7 @@
     letter-spacing: 0.1em;
     margin: 10px 0;
     text-decoration: none;
+    cursor: pointer;
   }
 
   .nav-option:hover {
@@ -45,6 +46,7 @@
     font-size: 18px;
     letter-spacing: 0.1em;
     margin: 10px;
+    cursor: pointer;
   }
 
   .user-languages:hover {
