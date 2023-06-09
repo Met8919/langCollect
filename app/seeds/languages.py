@@ -9,9 +9,7 @@ def seed_Languages():
     portuguese = Language(
         name = 'Portuguese'
     )
-    # chinese = Language(
-    #     name = 'Chinese'
-    # )
+    
     english = Language(
         name = 'English'
     )
@@ -25,7 +23,7 @@ def seed_Languages():
 
     db.session.add(russian)
     db.session.add(portuguese)
-    # db.session.add(chinese)
+    
     db.session.add(english)
     db.session.add(french)
     db.session.add(german)

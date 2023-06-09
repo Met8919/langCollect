@@ -5,27 +5,27 @@ from sqlalchemy.sql import text
 def seed_decks():
     deck1 = Deck(
         user_id = 1,
-        title = 'Test Deck1',
+        title = 'Basic Russian',
         language_id = 1
 
     )
 
     deck2 = Deck(
         user_id = 1,
-        title = 'Test Deck2',
+        title = 'Basic Portuguese',
         language_id = 2
 
     )
     deck3 = Deck(
         user_id = 1,
-        title = 'Test Deck3',
-        language_id = 3
+        title = 'Basic French',
+        language_id = 4
 
     )
     deck4 = Deck(
         user_id = 1,
-        title = 'Test Deck4',
-        language_id = 1
+        title = 'Basic German',
+        language_id = 5
 
     )
 
