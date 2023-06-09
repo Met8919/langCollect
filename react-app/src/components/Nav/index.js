@@ -33,7 +33,7 @@ export default function Nav() {
 
             setShowLangs(true)
 
-            console.log(displayLangs,'pasdasdasd')
+            
 
         }
 
@@ -85,6 +85,7 @@ export default function Nav() {
             <NavLink className='nav-option' to='/chat'> Chat</NavLink>
             <NavLink className='nav-option' excat to='/decks'> Decks</NavLink>
             <p className='nav-option' onClick={handleLogout}>LOG OUT</p>
+            <p className='nav-option' onClick={() => window.open('https://github.com/Met8919')} >ABOUT</p>
 
         </div>
         <div className='user-languages-container'>

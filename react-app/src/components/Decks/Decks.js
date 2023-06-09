@@ -1,7 +1,7 @@
 import './Decks.css'
 import { useDispatch,useSelector } from "react-redux";
 import { deleteDeck, getUserDecks } from '../../store/deck';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Deck from './DeckTile';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
@@ -19,6 +19,8 @@ export default function Decks() {
     const userLanguages = useSelector(state => state.languages.userLanguages)
 
 
+    const [currentDeck,setCurrentDeck] = useState(0)
+    const [displayPopup,setDisplayPopup] = useState(false)
 
 
 
@@ -38,17 +40,30 @@ export default function Decks() {
 
     },[currentLanguage])
 
-    const handleDeleteDeck = (deckId) => {
+    const handleDeleteClick = (deckId) => {
+        setDisplayPopup(true)
+        setCurrentDeck(deckId)
+        
+    }
 
 
-        dispatch(deleteDeck(deckId)).then(() => {
+    const handleDeleteDeck = () => {
 
-
+        setDisplayPopup(false)
+        dispatch(deleteDeck(currentDeck)).then(() => {
             dispatch(getUserDecks())
-
+            setDisplayPopup(false)
         })
+        
+    }
+
+    const closePopup = () => {
+
+        setDisplayPopup(false)
+       
 
     }
+
 
     const handleEditDeck = (deckId) => {
         history.push(`/decks/update/${deckId}`)
@@ -67,6 +82,13 @@ export default function Decks() {
             {!Object.values(decks).length && <h1>CREATE YOUR FIRST DECK</h1>}
         <div className='decks-container'>
 
+            {displayPopup && 
+                <div className='confirm-delete'>
+                    <p>Confirm deletion</p>
+                    <p onClick={(e) => handleDeleteDeck()} className='btn-option'>Delete</p>
+                    <p onClick={(e) => closePopup()} className='btn-option'>Close</p>
+                </div>}
+
             {Object.values(decks).length && Object.values(decks).filter(deck => deck.languageId === currentLanguage.id).map(deck => (
                 <div className='card-container'>
                 <NavLink hoverStyle={{ color: "blueviolet" }} className='navLink' to={`/decks/${deck.id}`}>
@@ -76,7 +98,7 @@ export default function Decks() {
                 </NavLink>
                 <div className='deck-buttons-container'>
                     <p onClick={() => handleEditDeck(deck.id)} className='deck-buttons'>EDIT</p>
-                    <p onClick={() => handleDeleteDeck(deck.id)} className='deck-buttons'>DELETE</p>
+                    <p onClick={() => handleDeleteClick(deck.id)} className='deck-buttons'>DELETE</p>
 
                 </div>
 
