@@ -3,7 +3,7 @@
 
 ## [Live Site](https://lang-collect.onrender.com)
 
-<img width='742' src='https://i.ibb.co/NtL0Ds4/lang.png](https://i.ibb.co/2q1HM4D/lang2.png'>
+<img width='742' src='https://i.ibb.co/2q1HM4D/lang2.png'>
 
 
 
