@@ -1,7 +1,7 @@
 
 # LangCollect
 
-<img width='742' src='https://i.ibb.co/DWYKrbq/spots.png'>
+<img width='742' src='https://i.ibb.co/DWYKrbq/spots.png](https://i.ibb.co/NtL0Ds4/lang.png'>
 
 
 
