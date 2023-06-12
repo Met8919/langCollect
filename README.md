@@ -1,6 +1,6 @@
 
 # LangCollect
-<img width='742' height='800' src='https://i.ibb.co/NtL0Ds4/lang.png'>
+<img src="https://i.ibb.co/NtL0Ds4/lang.png" alt="lang" border="0" />
 
 
 
