@@ -1,6 +1,7 @@
 
 # LangCollect
-<img src="https://i.ibb.co/NtL0Ds4/lang.png" alt="lang" border="0" />
+
+<img width='742' src='https://i.ibb.co/DWYKrbq/spots.png'>
 
 
 
