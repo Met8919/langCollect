@@ -146,6 +146,18 @@ img {
 }
 
 
+.selected-Ukrainian  {
+    fill: rgba(0,88,181, 0.5);
+
+}
+
+.Ukraine:hover {
+    fill: rgba(0,88,181, 0.5);
+
+}
+
+
+
 
 
 
