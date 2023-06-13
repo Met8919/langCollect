@@ -19,6 +19,9 @@ def seed_Languages():
     german = Language (
         name = "German"
     )
+    bulgarian = Language(
+        name ='Bulgarian'
+    )
 
 
     db.session.add(russian)
@@ -27,6 +30,8 @@ def seed_Languages():
     db.session.add(english)
     db.session.add(french)
     db.session.add(german)
+
+    db.session.add(bulgarian)
     db.session.commit()
 
 
