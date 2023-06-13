@@ -7,7 +7,7 @@ import { getKnownWords } from "../../store/knownWords";
 import { getUserLanguages, setWord2, toggleDisplayChoices } from "../../store/language";
 import PopUp from "../Popup/Popup";
 import OpenModalButton from "../OpenModalButton";
-import { definedSpeech } from "../../DefinedSpeech/definedSpeech";
+import { definedSpeech, getDefinedSpeech, getSpeechLevel } from "../DefinedSpeech/definedSpeech";
 
 
 export default function Chat() {
@@ -77,22 +77,10 @@ export default function Chat() {
 
         if (Object.values(currentLanguage).length) {
 
-            const wordTotal = Object.values(knownWords).filter(word => word.languageId === currentLanguage.id).length
-            let speechLevel 
-
-
-            if (wordTotal <= 650) {
-                speechLevel = 'a1'
-            }   else if (wordTotal <= 1800) {
-                speechLevel = 'a2'
-            }   else if (wordTotal <= 4000) {
-                speechLevel = 'b1'
-            }   else if (wordTotal <= 8000) {
-                speechLevel = 'b2'
-            }
+            const definedSpeech = getDefinedSpeech(currentLanguage,knownWords)
 
             const messages = [...chat]
-            messages[0] = {role: 'system', content: `Only speak in ${currentLanguage.name}. Also, ${definedSpeech[speechLevel]}`}
+            messages[0] = {role: 'system', content: `Only speak in ${currentLanguage.name}. Also, ${definedSpeech}`}
             dispatch(changeChatLanguage(messages[0]))
 
         }

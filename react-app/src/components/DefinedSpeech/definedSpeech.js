@@ -1,7 +1,32 @@
 
 
+export const getDefinedSpeech = (knownWords,currentLanguage) => {
 
-export const definedSpeech = {
+    const wordTotal = Object.values(knownWords).filter(word => word.languageId === currentLanguage.id).length
+            let speechLevel 
+
+
+            if (wordTotal <= 650) {
+                speechLevel = 'a1'
+            }   else if (wordTotal <= 1800) {
+                speechLevel = 'a2'
+            }   else if (wordTotal <= 4000) {
+                speechLevel = 'b1'
+            }   else if (wordTotal <= 8000) {
+                speechLevel = 'b2'
+            }
+    
+    
+    return speechLevel
+
+}
+
+
+
+
+
+
+const definedSpeech = {
     a1: `ChatGPT, please communicate with me at an A1 level according to the CEFR. This means using simple sentences and common phrases about familiar topics. Also, try to ask basic questions that require simple, direct responses."
 
     Example interactions could look like this:
