@@ -26,6 +26,11 @@ def seed_Languages():
         name = 'Ukrainian'
     )
 
+    spanish = Language(
+        name = 'Spanish'
+    )
+
+
 
     db.session.add(russian)
     db.session.add(portuguese)
